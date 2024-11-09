@@ -33,7 +33,7 @@ function Certificate() {
       }, [ref])
   return (
     
-    <div className="container m-5 items-center ">
+    <div className="container  m-5 items-center ">
         
         {/* <input type="text" placeholder="name"  value={name} onChange={(e) =>{
             setName(e.target.value)
@@ -44,18 +44,18 @@ function Certificate() {
         <input type="text" placeholder="date"  value={date} onChange={(e) =>{
             setDate(e.target.value)
         }}/> */}
-      <div className="container p-6" ref={ref}>
+      <div className="container  p-6" ref={ref}>
         {/* <h1 className="text-white font-bold text-lg">Create a certificate now</h1> */}
         <img src={certificate} alt="" />
         <div className="content">
-          <h1>divyansh dubey</h1>
+          <h1></h1>
           <span className="event-date flex  items-center">
-          <span className="event">{event}lken;sf</span>
-          <span className="date">{date}laknfd;a</span>
+          <span className="event">{event}</span>
+          <span className="date">{date}</span>
           </span>
         </div>
       </div>
-      <Button variant="contained"  onClick={onButtonClick}>Download </Button>
+      <Button variant="contained" className="download" onClick={onButtonClick}>Download </Button>
     </div>
   );
 }

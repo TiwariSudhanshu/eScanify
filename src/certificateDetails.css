@@ -1,110 +1,88 @@
-/* Base styling for body */
-body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-color: #040023;
-    margin: 0;
-    min-height: 100vh;
+/* Styling for the certificate container */
+.certificate-details-container {
+    /* background-color: #150a69; */
+    border: 0.05rem solid white;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
     color: white;
-}
-
-/* Certificate container */
-.container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 90vw;
-    max-width: 560px;
-    height: auto;
-    position: relative;
-    border-radius: 4px;
-    overflow: hidden;
-}
-
-/* Certificate image */
-.container img {
-    width: 100%;
-    height: auto;
-    border-radius: 4px;
-}
-
-/* Content overlay for text */
-.container .content {
-    position: absolute;
-    top: 0;
-    height: 100%;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-/* Responsive font sizing and positioning */
-.container .content h1 {
-    font-size: calc(20px + 1vw);
-    /* margin-top: %; */
     text-align: center;
-    color: #004080;
 }
 
-.container .content .event-date{
-    margin-top: 0.8%;
+/* Certificate title styling */
+.certificate-title {
+    margin-bottom: 20px;
+    color: #f8f8ff;
 }
 
-.container .content .event {
-    font-size: calc(12px + 0.5vw);
-    margin-bottom: 10%;
+/* Content layout */
+.certificate-content {
+    width: 100%;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Styling for each detail item */
+.detail-item {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #666;
+    padding-bottom: 8px;
+}
+
+/* Label styling */
+.detail-label {
     font-weight: bold;
-    color: #333;
-    margin-left: 50%;
+    font-size: 1.1em;
+    color: #b8b8d4;
 }
 
-.container .content .date {
-    font-size: calc(8px + 0.5vw);
-    margin-bottom: 4%;
-    font-weight: bold;
-    font-style: italic;
-    margin-left: 75%;
-    /* color: #666; */
+/* Value styling */
+.detail-value {
+    font-size: 1em;
+    color: #e8e8ff;
 }
 
-/* Button styling */
-button {
-    color: white;
-    padding: 10px 20px;
-    font-size: 1rem;
-    background-color: #007bff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s;
+/* Footer styling */
+.certificate-footer {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #444;
 }
 
-button:hover {
-    background-color: #0056b3;
+.footer-text {
+    font-size: 0.9em;
+    color: #f8f8ff;
 }
 
-/* Media queries for smaller screens */
-@media (max-width: 600px) {
-    .container {
-        width: 95vw;
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .certificate-details-container {
+        padding: 20px;
+        width: 90vw;
+    }
+    
+    .certificate-title {
+        font-size: 2em;
     }
 
-    .container .content h1 {
-        font-size: calc(18px + 1vw);
-    }
-
-    .container .content .event,
-    .container .content .date {
-        font-size: calc(10px + 0.5vw);
-    }
-
-    button {
-        font-size: 0.9rem;
-        padding: 8px 16px;
+    .detail-item {
+        font-size: 1em;
     }
 }
+
+/* Smooth transition for hover effects */
+.detail-item,
+.certificate-footer {
+    transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+.detail-item:hover .detail-label,
+.detail-item:hover .detail-value {
+    color: #d1d1ff;
+}
+
+/* Additional styling to enhance the visual feel */
+

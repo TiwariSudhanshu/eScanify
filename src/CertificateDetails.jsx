@@ -19,7 +19,7 @@ const CertificateDetails = () => {
 
   return (
     <div className="certificate-details-container">
-      <h2 className="certificate-title">Certificate Details</h2>
+      <h2 className="certificate-title text-3xl font-bold  pb-5">Certificate Details</h2>
 
       <div className="certificate-content">
         <div className="detail-item">

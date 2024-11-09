@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './layout.css';
+import Button from '@mui/material/Button';
+import { colors } from '@mui/material';
 
 const Layout = ({ children }) => {
   return (
@@ -8,21 +10,25 @@ const Layout = ({ children }) => {
       <header className="layout-header">
         <div className="header-content">
           <h1 className="site-title">
-            <Link to="/" className="header-link flex">
+            <Link to="/" className="header-link flex ">
               eScanify
             </Link>
           </h1>
           <nav>
-            <ul className="nav-links">
+            <ul className="nav-links flex gap-4">
               <li>
-                <Link to="/" className="nav-link">
+                {/* <Link to="/" className="nav-link text-lg">
                   Home
-                </Link>
+                </Link> */}
+                <Button variant="outlined"><Link to="/" className="nav-link text-lg">
+                  Home
+                </Link></Button>
               </li>
               <li>
-                <Link to="/certificate-details" className="nav-link">
+                
+                <Button variant="outlined"><Link to="/certificate-details" className="nav-link text-lg">
                   Certificate Details
-                </Link>
+                </Link></Button>
               </li>
             </ul>
           </nav>

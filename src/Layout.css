@@ -1,9 +1,41 @@
 /* General layout */
+.layout-container {
+    background: linear-gradient(to right,#040023, #212484);
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.layout-header{
+    /* background-color: red; */
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.site-title{
+    font-weight: bolder;
+    font-size: 23px;
+    color: white;
+}
+
+.header-content{
+ /* background-color: red; */
+ width: 100%;
+ display: flex;
+ justify-content: space-around;
+ align-items: center;
+ margin: 2%;
+}
 .layout {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    min-width: 90vw;
+    min-width: 100%;
 }
 
 .logo{
@@ -36,6 +68,15 @@
     gap: 15px;
 }
 
+.nav-link{
+    /* border: solid 1px white; */
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: capitalize;
+
+}
+
 .header nav a {
     color: white;
     text-decoration: none;
@@ -59,10 +100,11 @@
     color: white;
     padding: 10px 30px;
     text-align: center;
+    margin: 20%;
 }
 
 .footer p {
-    margin: 5px 0;
+    margin: 35px 0;
 }
 
 .footer-links {
@@ -80,4 +122,9 @@
 
 .footer-links a:hover {
     color: #ffffff;
+}
+
+.footer-text{
+    /* background-color: red; */
+    margin-top: 10%;
 }
