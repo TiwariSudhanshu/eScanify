@@ -1,0 +1,110 @@
+/* Base styling for body */
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #040023;
+    margin: 0;
+    min-height: 100vh;
+    color: white;
+}
+
+/* Certificate container */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 90vw;
+    max-width: 560px;
+    height: auto;
+    position: relative;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+/* Certificate image */
+.container img {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+}
+
+/* Content overlay for text */
+.container .content {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Responsive font sizing and positioning */
+.container .content h1 {
+    font-size: calc(20px + 1vw);
+    /* margin-top: %; */
+    text-align: center;
+    color: #004080;
+}
+
+.container .content .event-date{
+    margin-top: 0.8%;
+}
+
+.container .content .event {
+    font-size: calc(12px + 0.5vw);
+    margin-bottom: 10%;
+    font-weight: bold;
+    color: #333;
+    margin-left: 50%;
+}
+
+.container .content .date {
+    font-size: calc(8px + 0.5vw);
+    margin-bottom: 4%;
+    font-weight: bold;
+    font-style: italic;
+    margin-left: 75%;
+    /* color: #666; */
+}
+
+/* Button styling */
+button {
+    color: white;
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Media queries for smaller screens */
+@media (max-width: 600px) {
+    .container {
+        width: 95vw;
+    }
+
+    .container .content h1 {
+        font-size: calc(18px + 1vw);
+    }
+
+    .container .content .event,
+    .container .content .date {
+        font-size: calc(10px + 0.5vw);
+    }
+
+    button {
+        font-size: 0.9rem;
+        padding: 8px 16px;
+    }
+}
