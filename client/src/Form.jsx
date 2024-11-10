@@ -29,10 +29,10 @@ const Form = () => {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-white">
+    <div className="flex justify-center mt-20 w-full items-center min-h-screen bg-gray-50 ">
       <form
         onSubmit={handleSubmit}
-        className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md"
+        className="bg-white mt-20 p-8 rounded-lg shadow-lg flex justify-center w-full flex-col "
       >
         <h2 className="text-2xl font-bold mb-6 text-center">Event Registration</h2>
 
