@@ -3,6 +3,9 @@ import React, { useCallback, useRef, useState }  from "react";
 import certificate from "./../public/images/certificate.jpg";
 import './certificate.css';
 import { toPng } from 'html-to-image';
+import Button from '@mui/material/Button';
+
+
 
 
 
@@ -11,6 +14,7 @@ function Certificate() {
     const ref = useRef(null)
     const[name, setName] = useState('')
     const [event, setEvent] = useState('')
+    const [date, setDate] = useState('')
     const onButtonClick = useCallback(() => {
         if (ref.current === null) {
           return
@@ -29,23 +33,29 @@ function Certificate() {
       }, [ref])
   return (
     
-    <div>
+    <div className="container  m-5 items-center ">
         
-        <input type="text" placeholder="name"  value={name} onChange={(e) =>{
+        {/* <input type="text" placeholder="name"  value={name} onChange={(e) =>{
             setName(e.target.value)
         }}/>
         <input type="text" placeholder="event"  value={event} onChange={(e) =>{
             setEvent(e.target.value)
         }}/>
-      <div className="container" ref={ref}>
+        <input type="text" placeholder="date"  value={date} onChange={(e) =>{
+            setDate(e.target.value)
+        }}/> */}
+      <div className="container  p-6" ref={ref}>
+        {/* <h1 className="text-white font-bold text-lg">Create a certificate now</h1> */}
         <img src={certificate} alt="" />
         <div className="content">
-          <h1>{name}</h1>
+          <h1></h1>
+          <span className="event-date flex  items-center">
           <span className="event">{event}</span>
-          <div className="date">12/02/2024</div>
+          <span className="date">{date}</span>
+          </span>
         </div>
       </div>
-      <button onClick={onButtonClick}>Click me</button>
+      <Button variant="contained" className="download" onClick={onButtonClick}>Download </Button>
     </div>
   );
 }
