@@ -29,10 +29,10 @@ const Form = () => {
   };
 
   return (
-    <div className="flex justify-center mt-20 w-full items-center min-h-screen bg-gray-50 ">
+    <div  className="flex justify-center min-h-screen h-full pb-10 w-full items-center bg-white ">
       <form
         onSubmit={handleSubmit}
-        className="bg-white mt-20 p-8 rounded-lg shadow-lg flex justify-center w-full flex-col "
+        className="bg-white p-14 mt-auto z-10 rounded-lg shadow-lg flex justify-center w-full flex-col "
       >
         <h2 className="text-2xl font-bold mb-6 text-center">Event Registration</h2>
 
@@ -143,12 +143,12 @@ const Form = () => {
         </div>
 
         <div className="mb-4">
-          <label className="block text-gray-700">Any Suggestions</label>
+          <label className="block col-span-3 row-span-7 text-gray-700">Any Suggestions</label>
           <textarea
             name="suggestions"
             value={formData.suggestions}
             onChange={handleChange}
-            className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600"
+            className="w-full row-span-7 col-span-3 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600"
           ></textarea>
         </div>
 
