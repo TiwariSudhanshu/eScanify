@@ -1,20 +1,44 @@
-import React from 'react';
-import { useLocation } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import {  useParams } from 'react-router-dom';
 
 const CertificateDetails = () => {
-  const location = useLocation();
-  const { attendeeData } = location.state || {};
+  const {id} = useParams();
+  const [profile, setProfile] = useState(null)
 
-  const {
-    name = 'Pavitra',
-    event = 'Sample Event',
-    date = 'November 9, 2024',
-    branch = 'Computer Science',
-    college = 'XYZ University',
-    year = '3rd Year',
-    enrollmentNo = '123456789'
-  } = attendeeData || {};
+  useEffect(()=>{
+    const fetchData = async ()=>{
+     try {
+       const response = await fetch( "http://localhost:8080/api/v1/profile/fetch", {
+         method: "post",
+         headers:{
+           'Content-Type': 'application/json'
+         },
+         body: JSON.stringify({
+           id
+         })
+       })
+       console.log("response:",response)
+       if(response.ok){
+          const data = await response.json()
+          setProfile(data.data)
+         
+       }else{
+         alert("Some error occured")
+       }
+     } catch (error) {
+      alert("Error")
+      console.log("Error is :", error)
+     }
+    }
+    fetchData()
+  },[id])
+  if (!profile) {
+    return <div>Loading...</div>; // Show a loading message while fetching data
+  }
 
+  const { name, eventName, branch, college, year, enrollment } = profile;
+  const date = ''; 
+  
   return (
     <div className=" flex flex-col items-center py-10">
       <h2 className="text-3xl font-bold text-gray-800 mb-10 mt-10">Certificate Details</h2>
@@ -26,7 +50,7 @@ const CertificateDetails = () => {
         </div>
         <div className="mb-4">
           <span className="text-gray-600 font-semibold">Event:</span>
-          <span className="ml-2 text-gray-800">{event}</span>
+          <span className="ml-2 text-gray-800">{eventName}</span>
         </div>
         <div className="mb-4">
           <span className="text-gray-600 font-semibold">Date:</span>
@@ -46,7 +70,7 @@ const CertificateDetails = () => {
         </div>
         <div className="mb-4">
           <span className="text-gray-600 font-semibold">Enrollment No.:</span>
-          <span className="ml-2 text-gray-800">{enrollmentNo}</span>
+          <span className="ml-2 text-gray-800">{enrollment}</span>
         </div>
       </div>
 
