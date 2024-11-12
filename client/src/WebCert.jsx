@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Certificate() {
+function WebCert() {
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
       <div className="w-[800px] bg-white border-4 border-gray-200 p-8 rounded-md shadow-lg relative">
@@ -54,4 +54,4 @@ function Certificate() {
   );
 }
 
-export default Certificate;
+export default WebCert;
