@@ -1,6 +1,6 @@
 import React, { useCallback, useRef, useState }  from "react";
 
-import certificate from "./../public/images/certificate.jpg";
+// import certificate from "./../public/images/certificate.jpg";
 import './certificate.css';
 import { toPng } from 'html-to-image';
 import Button from '@mui/material/Button';
@@ -46,7 +46,7 @@ function Certificate() {
         }}/> */}
       <div className="container  p-6" ref={ref}>
         {/* <h1 className="text-white font-bold text-lg">Create a certificate now</h1> */}
-        <img src={certificate} alt="" />
+        {/* <img src={certificate} alt="" /> */}
         <div className="content">
           <h1></h1>
           <span className="event-date flex  items-center">

@@ -1,8 +1,33 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
+import html2canvas from 'html2canvas';
+import jsPDF from 'jspdf';
+import { useLocation } from 'react-router-dom';
+import {QRCodeSVG} from 'qrcode.react'
 
 function WebCert() {
+
+  const componentRef = useRef();
+  const generatePDF = async()=>{
+    const element = componentRef.current
+    const canvas = await html2canvas(element)
+    const imgData = canvas.toDataURL("/image/png");
+
+    const pdf = new jsPDF();
+    const imgWidth = 190; 
+    const pageHeight = pdf.internal.pageSize.height;
+    const imgHeight = (canvas.height * imgWidth) / canvas.width;
+    let position = 0;
+    pdf.addImage(imgData, "PNG", 10, position, imgWidth, imgHeight);
+    pdf.save("certificate.pdf");
+
+  }
+
+ const location = useLocation();
+ const { id, name } = location.state || {};
+  const link = `http://localhost:5173/profile/${id}`;
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100">
+    <>
+    <div ref={componentRef} className="flex justify-center items-center min-h-screen bg-gray-100">
       <div className="w-[800px] bg-white border-4 border-gray-200 p-8 rounded-md shadow-lg relative">
         
         {/* Top Ribbon */}
@@ -20,7 +45,7 @@ function WebCert() {
 
         {/* Recipient Section */}
         <p className="text-lg text-yellow-600 text-center mt-6">THIS CERTIFICATE IS PRESENTED TO:</p>
-        <p className="text-3xl font-cursive text-blue-600 text-center mt-2">Rufus Stewart</p>
+        <p className="text-3xl font-cursive text-blue-600 text-center mt-2">{name}</p>
         
         {/* Message */}
         <p className="text-center text-gray-600 mt-4">
@@ -46,11 +71,13 @@ function WebCert() {
           {/* Placeholder for QR Code image */}
           <div className="w-20 h-20 bg-gray-200 flex justify-center items-center">
             {/* Replace with an actual QR code image */}
-            <span className="text-gray-400">[QR]</span>
+            <span className="text-gray-400"><QRCodeSVG value={link}  /></span>
           </div>
         </div>
       </div>
+    <button onClick={generatePDF}>Download</button>
     </div>
+    </>
   );
 }
 

@@ -9,10 +9,10 @@ import WebCert from './WebCert';
 function App() {
   return (
     <Router future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
-{/*       <Layout> */}
+      <Layout>
         <Routes >
-          <WebCert/>
-          <Route path="/" element={<Certificate />} />
+        <Route path="/" element={<WebCert />} />
+          {/* <Route path="/" element={<Certificate />} /> */}
           <Route path="/certificate-details" element={<CertificateDetails />} />
           <Route path="/form" element={<Form />} />  {/* Added route for Form */}
         </Routes>

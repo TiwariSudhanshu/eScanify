@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Form = () => {
   const [formData, setFormData] = useState({
@@ -13,8 +14,8 @@ const Form = () => {
     suggestions: "",
     checkbox1: false,
     checkbox2: false,
-  });
-
+  }); 
+  const navigate = useNavigate();
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     setFormData({
@@ -23,9 +24,41 @@ const Form = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
-    console.log(formData); // Replace with desired submit action
+    try {
+      const response = await fetch( "/api/v1/profile/save", {
+          method: 'post',
+          headers: {
+              'Content-Type': 'application/json'
+            },
+          body: JSON.stringify(
+           {
+            name: formData.name,
+            email: formData.email,
+            mobile: formData.mobile,
+            college: formData.college,
+            year: formData.year,
+            branch: formData.branch,
+            enrollment: formData.enrollment,
+            eventName: formData.eventName
+           }
+          )
+      })
+  
+      if(response.ok){
+          alert("Registered")
+          const data = await response.json();
+          const id = data.data._id;
+          navigate("/", {state: { id, name: formData.name}})
+      }else{
+          alert("Registration failed")
+      }
+  } catch (error) {
+      alert("Error")
+      console.log("Error is : ", error)
+  }
+
   };
 
   return (

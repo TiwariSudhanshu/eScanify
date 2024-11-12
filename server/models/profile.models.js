@@ -2,7 +2,7 @@ import mongoose from "mongoose"
 
 
 const profileSchema = new mongoose.Schema({
-    enrollmentNo:{
+    enrollment:{
         type: String,
         required: true,
         index: true
@@ -22,8 +22,18 @@ const profileSchema = new mongoose.Schema({
         required: true,
         index: true
     },
-    sem:{
-        type: Number,
+    eventName:{
+        type: String,
+        required: true,
+        index: true
+    },
+    mobile:{
+        type: String,
+        required: true,
+        index: true
+    },
+    year:{
+        type: String,
         required: true,
         index: true
     },
