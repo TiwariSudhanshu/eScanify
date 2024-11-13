@@ -32,7 +32,7 @@ function WebCert() {
    }
  },[navigate])
 
-  const link = `https://escanify.onrender.com/profile/${id}`;
+  const link = `http://localhost:8080/profile/${id}`;
   return (
     <>
     <div ref={componentRef} className="flex justify-center items-center min-h-screen bg-gray-100">
