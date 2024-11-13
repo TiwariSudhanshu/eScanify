@@ -10,7 +10,6 @@ export const fetchData = async ( req, res )=>{
     if(!profile){
         throw ApiError(400, "No Profile Found")
     }
-    console.log(profile)
 
     return res.status(200).json(
         new ApiResponse(200, profile, "Profile fetched successfully")

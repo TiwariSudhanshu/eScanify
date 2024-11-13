@@ -1,11 +1,11 @@
 import React, { useEffect, useRef } from 'react';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import {QRCodeSVG} from 'qrcode.react'
 
 function WebCert() {
-
+  const navigate = useNavigate();
   const componentRef = useRef();
   const generatePDF = async()=>{
     const element = componentRef.current
@@ -24,7 +24,15 @@ function WebCert() {
 
  const location = useLocation();
  const { id, name } = location.state || {};
-  const link = `http://localhost:5173/profile/${id}`;
+
+ useEffect(()=>{
+  if(!id || !name){
+    navigate("/");
+    return;
+   }
+ },[navigate])
+
+  const link = `https://escanify.onrender.com/profile/${id}`;
   return (
     <>
     <div ref={componentRef} className="flex justify-center items-center min-h-screen bg-gray-100">

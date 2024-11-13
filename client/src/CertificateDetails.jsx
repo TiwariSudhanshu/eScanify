@@ -8,7 +8,7 @@ const CertificateDetails = () => {
   useEffect(()=>{
     const fetchData = async ()=>{
      try {
-       const response = await fetch( "http://localhost:8080/api/v1/profile/fetch", {
+       const response = await fetch( "/api/v1/profile/fetch", {
          method: "post",
          headers:{
            'Content-Type': 'application/json'
