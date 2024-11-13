@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import {  useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const CertificateDetails = () => {
   const {id} = useParams();
@@ -23,10 +24,10 @@ const CertificateDetails = () => {
           setProfile(data.data)
          
        }else{
-         alert("Some error occured")
+        toast.error("Some error occured")
        }
      } catch (error) {
-      alert("Error")
+      toast.error("Error")
       console.log("Error is :", error)
      }
     }

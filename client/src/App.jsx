@@ -12,7 +12,6 @@ function App() {
       <Layout>
         <Routes >
         <Route path="/certificate" element={<WebCert />} />
-          {/* <Route path="/" element={<Certificate />} /> */}
           <Route path="/profile/:id" element={<CertificateDetails />} />
           <Route path="/" element={<Form />} />  {/* Added route for Form */}
         </Routes>
