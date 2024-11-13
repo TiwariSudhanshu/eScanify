@@ -25,14 +25,14 @@ function WebCert() {
  const location = useLocation();
  const { id, name } = location.state || {};
 
- useEffect(()=>{
-  if(!id || !name){
-    navigate("/");
-    return;
-   }
- },[navigate])
+//  useEffect(()=>{
+//   if(!id || !name){
+//     navigate("/");
+//     return;
+//    }
+//  },[navigate])
 
-  const link = `http://localhost:8080/profile/${id}`;
+  const link = `http://localhost:5173/profile/${id}`;
   return (
     <>
     <div ref={componentRef} className="flex justify-center items-center min-h-screen bg-gray-100">

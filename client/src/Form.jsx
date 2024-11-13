@@ -50,7 +50,7 @@ const Form = () => {
           alert("Registered")
           const data = await response.json();
           const id = data.data._id;
-          navigate("/", {state: { id, name: formData.name}})
+          navigate("/certificate", {state: { id, name: formData.name}})
       }else{
           alert("Registration failed")
       }
