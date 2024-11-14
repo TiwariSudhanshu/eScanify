@@ -44,10 +44,10 @@ function Certificate() {
         <input type="text" placeholder="date"  value={date} onChange={(e) =>{
             setDate(e.target.value)
         }}/> */}
-      <div className="container  p-6" ref={ref}>
+      <div className="container   p-6" ref={ref}>
         {/* <h1 className="text-white font-bold text-lg">Create a certificate now</h1> */}
         {/* <img src={certificate} alt="" /> */}
-        <div className="content">
+        <div className="content ">
           <h1></h1>
           <span className="event-date flex  items-center">
           <span className="event">{event}</span>
