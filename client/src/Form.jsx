@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import { toast } from "react-toastify";
 const Form = () => {
   const [formData, setFormData] = useState({
     name: "",
@@ -47,15 +47,17 @@ const Form = () => {
       })
   
       if(response.ok){
-          alert("Registered")
+          toast.success("Registered",{
+            autoClose: 3000,
+          })
           const data = await response.json();
           const id = data.data._id;
           navigate("/certificate", {state: { id, name: formData.name}})
       }else{
-          alert("Registration failed")
+          toast.error("Registration failed")
       }
   } catch (error) {
-      alert("Error")
+      toast.error("Error")
       console.log("Error is : ", error)
   }
 
