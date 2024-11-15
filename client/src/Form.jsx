@@ -14,7 +14,7 @@ const Form = () => {
     suggestions: "",
     checkbox1: false,
     checkbox2: false,
-  }); 
+  });
   const navigate = useNavigate();
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -24,109 +24,117 @@ const Form = () => {
     });
   };
 
-  const handleSubmit = async(e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch( "/api/v1/profile/save", {
-          method: 'post',
-          headers: {
-              'Content-Type': 'application/json'
-            },
-          body: JSON.stringify(
-           {
-            name: formData.name,
-            email: formData.email,
-            mobile: formData.mobile,
-            college: formData.college,
-            year: formData.year,
-            branch: formData.branch,
-            enrollment: formData.enrollment,
-            eventName: formData.eventName
-           }
-          )
-      })
-  
-      if(response.ok){
-          toast.success("Registered",{
-            autoClose: 3000,
-          })
-          const data = await response.json();
-          const id = data.data._id;
-          navigate("/certificate", {state: { id, name: formData.name}})
-      }else{
-          toast.error("Registration failed")
-      }
-  } catch (error) {
-      toast.error("Error")
-      console.log("Error is : ", error)
-  }
+      const response = await fetch("/api/v1/profile/save", {
+        method: "post",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          mobile: formData.mobile,
+          college: formData.college,
+          year: formData.year,
+          branch: formData.branch,
+          enrollment: formData.enrollment,
+          eventName: formData.eventName,
+        }),
+      });
 
+      if (response.ok) {
+        toast.success("Registered", {
+          autoClose: 3000,
+        });
+        const data = await response.json();
+        const id = data.data._id;
+        navigate("/certificate", { state: { id, name: formData.name } });
+      } else {
+        toast.error("Registration failed");
+      }
+    } catch (error) {
+      toast.error("Error");
+      console.log("Error is : ", error);
+    }
   };
 
   return (
-    <div  className="flex justify-center min-h-screen h-full pb-10 w-full items-center bg-white ">
+    <div className="flex flex-col min-h-screen justify-center   border-gray-800   pb-10 w-full items-center bg-gradient-to-br from-indigo-100 via-blue-100 to-sky-50 text-white">
+      {/* Header */}
+      <header className="fixed top-0 left-0 z-40 w-full bg-shubhu py-2 text-center text-white font-bold text-2xl">
+        Welcome to eScanify
+      </header>
+
+      <main className="flex-grow w-full pt-20 pb-10 flex items-center justify-center">
+        <div className="w-full max-w-lg p-6 shadow-black  rounded-lg shadow-2xl">
+      
+      
+        <h2 className="text-2xl font-bold text-shubhu text-center">
+          Digital certificate generator
+        </h2>
       <form
         onSubmit={handleSubmit}
-        className="bg-white p-14 mt-auto z-10 rounded-lg shadow-lg flex justify-center w-full flex-col "
+        className="from-blue-900/50 to-white/10   p-6  mt-8 z-10 rounded-xl max-w-lg flex justify-center w-full flex-col "
       >
-        <h2 className="text-2xl font-bold mb-6 text-center">Event Registration</h2>
 
         <div className="mb-4">
-          <label className="block text-gray-700">Name*</label>
+          <label className="block text-black font-bold">Name*</label>
           <input
             type="text"
             name="name"
             value={formData.name}
             onChange={handleChange}
             required
-            className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600"
+            className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 text-black focus:ring-blue-600"
           />
         </div>
 
         <div className="mb-4">
-          <label className="block text-gray-700">Email*</label>
+          <label className="block text-black font-bold">Email*</label>
           <input
             type="email"
             name="email"
             value={formData.email}
             onChange={handleChange}
             required
-            className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600"
+            className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 text-black focus:ring-blue-600 "
           />
         </div>
 
         <div className="mb-4">
-          <label className="block text-gray-700">Mobile No.*</label>
+          <label className="block text-black font-bold">Mobile No.*</label>
           <input
             type="tel"
             name="mobile"
             value={formData.mobile}
             onChange={handleChange}
             required
-            className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600"
+            className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 text-black focus:ring-blue-600"
           />
         </div>
 
         <div className="mb-4">
-          <label className="block text-gray-700">College*</label>
+          <label className="block text-black font-bold">College*</label>
           <input
             type="text"
             name="college"
             value={formData.college}
             onChange={handleChange}
             required
-            className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600"
+            className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 text-black focus:ring-blue-600"
           />
         </div>
 
         <div className="mb-4">
-          <label className="block text-gray-700">Year*</label>
+          <label className="block text-black font-bold">Year*</label>
           <select
             name="year"
             value={formData.year}
             onChange={handleChange}
             required
-            className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600"
+            className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 text-black focus:ring-blue-600"
           >
             <option value="">Select Year</option>
             <option value="1st Year">1st Year</option>
@@ -137,13 +145,13 @@ const Form = () => {
         </div>
 
         <div className="mb-4">
-          <label className="block text-gray-700">Branch*</label>
+          <label className="block text-black font-bold">Branch*</label>
           <select
             name="branch"
             value={formData.branch}
             onChange={handleChange}
             required
-            className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600"
+            className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 text-black focus:ring-blue-600"
           >
             <option value="">Select Branch</option>
             <option value="CSE">CSE</option>
@@ -155,35 +163,37 @@ const Form = () => {
         </div>
 
         <div className="mb-4">
-          <label className="block text-gray-700">Enrollment No.*</label>
+          <label className="block text-black font-bold">Enrollment No.*</label>
           <input
             type="text"
             name="enrollment"
             value={formData.enrollment}
             onChange={handleChange}
-            className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600"
+            className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 text-black focus:ring-blue-600"
           />
         </div>
 
         <div className="mb-4">
-          <label className="block text-gray-700">Event Name*</label>
+          <label className="block text-black font-bold">Event Name*</label>
           <input
             type="text"
             name="eventName"
             value={formData.eventName}
             onChange={handleChange}
             required
-            className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600"
+            className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 text-black focus:ring-blue-600"
           />
         </div>
 
         <div className="mb-4">
-          <label className="block col-span-3 row-span-7 text-gray-700">Any Suggestions</label>
+          <label className="block col-span-3 row-span-7 text-black font-bold">
+            Any Suggestions
+          </label>
           <textarea
             name="suggestions"
             value={formData.suggestions}
             onChange={handleChange}
-            className="w-full row-span-7 col-span-3 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600"
+            className="w-full row-span-7 col-span-3 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 text-black focus:ring-blue-600"
           ></textarea>
         </div>
 
@@ -196,7 +206,7 @@ const Form = () => {
               onChange={handleChange}
               className="form-checkbox h-5 w-5 text-blue-600"
             />
-            <span className="ml-2 text-gray-700">Check box 1</span>
+            <span className="ml-2 text-black font-bold">Check box 1</span>
           </label>
         </div>
 
@@ -209,17 +219,23 @@ const Form = () => {
               onChange={handleChange}
               className="form-checkbox h-5 w-5 text-blue-600"
             />
-            <span className="ml-2 text-gray-700">Check box 2</span>
+            <span className="ml-2 text-black font-bold">Check box 2</span>
           </label>
         </div>
 
         <button
           type="submit"
-          className="w-full bg-blue-600 text-white font-bold py-2 px-4 rounded-md hover:bg-blue-700 transition duration-300"
+          className="w-full hover:bg-shubhu text-white font-bold py-2 px-4 rounded-md bg-blue-950 transition duration-300"
         >
           Submit
         </button>
       </form>
+      </div>
+      </main>
+      {/* Footer */}
+      <footer className="fixed bottom-0 left-0 z-40 w-full bg-shubhu py-1 text-center text-white  text-4sm">
+        © 2024 eScanify | All rights reserved.
+      </footer>
     </div>
   );
 };

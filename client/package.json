@@ -12,6 +12,7 @@
   "dependencies": {
     "@emotion/react": "^11.13.3",
     "@emotion/styled": "^11.13.0",
+    "@heroicons/react": "^1.0.6",
     "@mui/material": "^6.1.6",
     "html-to-image": "^1.11.11",
     "html2canvas": "^1.4.1",
