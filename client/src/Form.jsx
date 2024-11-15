@@ -64,19 +64,25 @@ const Form = () => {
     <div className="flex flex-col min-h-screen justify-center   border-gray-800   pb-10 w-full items-center bg-gradient-to-br from-indigo-100 via-blue-100 to-sky-50 text-white">
       {/* Header */}
       <header className="fixed top-0 left-0 z-40 w-full bg-shubhu py-2 text-center text-white font-bold text-2xl">
-        Welcome to eScanify
+        eScanify
       </header>
 
-      <main className="flex-grow w-full pt-20 pb-10 flex items-center justify-center">
-        <div className="w-full max-w-lg p-6 shadow-black  rounded-lg shadow-2xl">
+      <main className="flex-grow  w-full pt-20 pb-10 flex items-center justify-center">
+        <div className="w-full  bg-gradient-to-br from-blue-50 via-blue-100 to-blue-50
+
+
+
+
+
+ max-w-lg p-6 hover:shadow-black transition-all duration-300  rounded-lg shadow-2xl">
       
       
         <h2 className="text-2xl font-bold text-shubhu text-center">
-          Digital certificate generator
+          Digital Certificate Generator
         </h2>
       <form
         onSubmit={handleSubmit}
-        className="from-blue-900/50 to-white/10   p-6  mt-8 z-10 rounded-xl max-w-lg flex justify-center w-full flex-col "
+        className="from-blue-900/50 to-white/10   p-6  mt-2 z-10 rounded-xl max-w-lg flex justify-center w-full flex-col "
       >
 
         <div className="mb-4">
@@ -225,7 +231,7 @@ const Form = () => {
 
         <button
           type="submit"
-          className="w-full hover:bg-shubhu text-white font-bold py-2 px-4 rounded-md bg-blue-950 transition duration-300"
+          className="w-full hover:bg-blue-600 hover:text-white font-bold py-2 px-4 rounded-md outline text-shubhu transition duration-300"
         >
           Submit
         </button>
