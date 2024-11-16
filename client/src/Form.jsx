@@ -160,10 +160,17 @@ const Form = () => {
             className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 text-black focus:ring-blue-600"
           >
             <option value="">Select Branch</option>
-            <option value="CSE">CSE</option>
-            <option value="ECE">ECE</option>
-            <option value="ME">ME</option>
-            <option value="Civil">Civil</option>
+            <option value="AU">Automobile Engineering</option>
+            <option value="Civil">Civil Engineering</option>
+            <option value="CSE">Computer Science and Engineering</option>
+            <option value="EE">Electrical and Electronics Engineering</option>
+            <option value="ECE">Electronics and Communication Engineering</option>
+            <option value="IT">Information Technology</option>
+            <option value="Mech">Mechanical Engineering</option>
+            <option value="Petro">Petrochemical Technology</option>
+            <option value="AIML">CSE(Artificial Intelligence and Machine Learning)</option>
+            <option value="DS">CSE(Data Science)</option>
+            <option value="CSBS">Computer Science and Business System</option>
             <option value="Other">Other</option>
           </select>
         </div>
@@ -203,29 +210,29 @@ const Form = () => {
           ></textarea>
         </div>
 
-        <div className="mb-4">
+{/*         <div className="mb-4">
           <label className="inline-flex items-center">
             <input
               type="checkbox"
-              name="checkbox1"
+              name="Check Box1"
               checked={formData.checkbox1}
               onChange={handleChange}
               className="form-checkbox h-5 w-5 text-blue-600"
             />
-            <span className="ml-2 text-black font-bold">Check box 1</span>
+            <span className="ml-2 text-black font-bold"> Do you want to get updates in the future about events conducted by E-Cell RGPV?</span>
           </label>
-        </div>
+        </div> */}
 
         <div className="mb-4">
           <label className="inline-flex items-center">
             <input
               type="checkbox"
-              name="checkbox2"
+              name="Check Box2"
               checked={formData.checkbox2}
               onChange={handleChange}
               className="form-checkbox h-5 w-5 text-blue-600"
             />
-            <span className="ml-2 text-black font-bold">Check box 2</span>
+            <span className="ml-2 text-black">Could you please confirm if the details provided above are accurate and complete?</span>
           </label>
         </div>
 
