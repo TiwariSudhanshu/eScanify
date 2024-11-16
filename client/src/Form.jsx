@@ -11,6 +11,7 @@ const Form = () => {
     branch: "",
     enrollment: "",
     eventName: "",
+    eventDate: "",
     suggestions: "",
     checkbox1: false,
     checkbox2: false,
@@ -41,6 +42,7 @@ const Form = () => {
           branch: formData.branch,
           enrollment: formData.enrollment,
           eventName: formData.eventName,
+          eventDate: formData.eventDate,
         }),
       });
 
@@ -192,6 +194,17 @@ const Form = () => {
             type="text"
             name="eventName"
             value={formData.eventName}
+            onChange={handleChange}
+            required
+            className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 text-black focus:ring-blue-600"
+          />
+        </div>
+        <div className="mb-4">
+          <label className="block text-black font-bold">Event Date*</label>
+          <input
+            type="Date"
+            name="eventDate"
+            value={formData.eventDate}
             onChange={handleChange}
             required
             className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 text-black focus:ring-blue-600"

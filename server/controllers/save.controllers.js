@@ -5,7 +5,7 @@ import {ApiResponse} from "../utils/ApiResponse.js"
 export const saveData = async(req, res)=>{
     
    try {
-     const { enrollment, name, eventName, email, mobile, year, branch, college} = req.body;
+     const { enrollment, name, eventName, eventDate, email, mobile, year, branch, college} = req.body;
  
      const existedProfile = await Profile.findOne({enrollment})
  
@@ -19,6 +19,7 @@ export const saveData = async(req, res)=>{
          email,
          mobile,
          eventName,
+         eventDate,
          branch,
          year,
          college

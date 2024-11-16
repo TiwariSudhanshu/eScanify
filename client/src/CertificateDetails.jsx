@@ -40,8 +40,7 @@ const CertificateDetails = () => {
     );
   }
 
-  const { name, eventName, branch, college, year, enrollment } = profile;
-  const date = ""; // Assuming the date will be fetched or passed later
+  const { name, eventName, eventDate, branch, college, year, enrollment } = profile;
 
   return (
     <div className="flex flex-col items-center py-10  bg-gradient-to-br from-indigo-100 via-blue-100 to-sky-50 min-h-screen">
@@ -68,7 +67,7 @@ const CertificateDetails = () => {
         {/* Date Section */}
         <div className="flex items-center justify-between space-x-4 bg-blue-50 p-4 rounded-lg">
               <span className="text-lg text-shubhu font-bold">Date:</span>
-              <span className="text-lg font-semibold text-gray-800">{date}</span>
+              <span className="text-lg font-semibold text-gray-800">{eventDate}</span>
             </div>
 
         {/* Branch Section */}

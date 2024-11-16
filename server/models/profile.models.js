@@ -27,6 +27,11 @@ const profileSchema = new mongoose.Schema({
         required: true,
         index: true
     },
+    eventDate:{
+        type: Date,
+        required: true,
+        index: true
+    },
     mobile:{
         type: String,
         required: true,

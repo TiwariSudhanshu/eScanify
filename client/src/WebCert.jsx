@@ -32,7 +32,7 @@ function WebCert() {
 
   const location = useLocation();
   const { id, name } = location.state || {};
-  const link = `http://localhost:5173/profile/${id}`;
+  const link = `https://escanify.onrender.com/profile/${id}`;
 
   return (
     <>
