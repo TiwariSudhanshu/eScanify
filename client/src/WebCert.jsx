@@ -25,7 +25,7 @@ function WebCert() {
       const imgData = canvas.toDataURL("image/png");
   
       const pdf = new jsPDF({
-        orientation: "portrait",
+        orientation: "landscape",
         unit: "mm",
         format: "a4", 
       });
@@ -67,9 +67,9 @@ function WebCert() {
 
           {/* Logo Section */}
           <div className="flex flex-col relative items-center">
-            <div className="w-20 h-24 top-0 left-0 absolute flex items-center justify-center">
-              <img src={logo} alt="Logo" className="object-contain w-24 h-14" />
-            </div>
+            {/* <div className="w-20 h-24 top-0 left-0 absolute flex items-center justify-center"> */}
+              <img src={logo} alt="Logo" className="object-contain w-48 h-14" />
+            {/* </div> */}
             <div className="w-20 h-24 top-0 left-20 absolute flex items-center justify-center">
               <img src={tnp} alt="Logo" className="object-contain w-24 h-14" />
             </div>
@@ -110,8 +110,8 @@ function WebCert() {
           {/* Signature Section */}
           <div className="flex justify-around mt-12">
             <div className="text-center">
-              <div className="flex flex-col relative items-center">
-                <div className="w-20 h-12 bottom-15 right-15 absolute flex items-center justify-center">
+              <div className="flex bg-red-200 flex-col relative items-center">
+                <div className="w-20 h-12 bottom-12 right-15 absolute flex items-center justify-center">
                   <img src={shikha_sign} alt="Director sign" className="object-contain w-24 h-14" />
                 </div>
                 <div className="border-t-2 border-gray-300 w-32 mx-auto mb-1"></div>
