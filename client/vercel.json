@@ -1,5 +1,8 @@
 {
-  "rewrites": [
-    { "source": "/profile/:id", "destination": "/" }
-  ]
+"rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
 }
