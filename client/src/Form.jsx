@@ -214,12 +214,12 @@ const Form = () => {
           <label className="inline-flex items-center">
             <input
               type="checkbox"
-              name=" Do you want to get updates in the future about events conducted by E-Cell RGPV?"
+              name="CheckBox1"
               checked={formData.checkbox1}
               onChange={handleChange}
               className="form-checkbox h-5 w-5 text-blue-600"
             />
-            <span className="ml-2 text-black font-bold">Check box 1</span>
+            <span className="ml-2 text-black font-bold"> Do you want to get updates in the future about events conducted by E-Cell RGPV?</span>
           </label>
         </div>
 
@@ -227,12 +227,12 @@ const Form = () => {
           <label className="inline-flex items-center">
             <input
               type="checkbox"
-              name=" Do you want to get updates in the future about events conducted by E-Cell RGPV?"
+              name="CheckBox2"
               checked={formData.checkbox2}
               onChange={handleChange}
               className="form-checkbox h-5 w-5 text-blue-600"
             />
-            <span className="ml-2 text-black font-bold">Check box 2</span>
+            <span className="ml-2 text-black font-bold">Could you please confirm if the details provided above are accurate and complete?</span>
           </label>
         </div>
 
