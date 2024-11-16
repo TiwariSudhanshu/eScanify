@@ -1,6 +1,13 @@
 {
-  "rewrites": [
-    { "source": "/profile/:id", "destination": "/" },
-    { "source": "/(.*)", "destination": "/" }
+  "routes": [
+    {
+      "src": "/profile/(.*)",
+      "dest": "/index.html"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/index.html"
+    }
   ]
 }
+
