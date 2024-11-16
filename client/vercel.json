@@ -1,6 +1,5 @@
 {
   "rewrites": [
     { "source": "/profile/:id", "destination": "/certificate" },
-    { "source": "/(.*)", "destination": "/" }
   ]
 }
