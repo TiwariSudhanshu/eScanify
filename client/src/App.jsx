@@ -11,7 +11,7 @@ function App() {
       <>
         <Routes >
         <Route path="/certificate" element={<WebCert />} />
-          <Route path="/profile" element={<CertificateDetails />} />
+          <Route path="/profile/:id" element={<CertificateDetails />} />
           <Route path="/" element={<Form />} />  {/* Added route for Form */}
         </Routes>
       </>
