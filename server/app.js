@@ -7,7 +7,7 @@ const app = express();
 
 app.use(cors(
     {
-    origin: '*',
+    origin: ["https://e-scanify-oqnjszl5z-sudhanshu-tiwaris-projects-8f656169.vercel.ap"],
     credentials: true,
     }
 ))

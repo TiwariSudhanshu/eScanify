@@ -1,6 +1,7 @@
 import { Profile } from "../models/profile.models.js";
 import {ApiError} from "../utils/ApiError.js"
 import {ApiResponse} from "../utils/ApiResponse.js"
+import mongoose from "mongoose";
 
 
 export const fetchData = async ( req, res )=>{

@@ -12,28 +12,34 @@ function WebCert() {
 
   const generatePDF = async () => {
     const element = componentRef.current;
-    const canvas = await html2canvas(element, {
-      scale: 2,
-      useCORS: true, 
-    });
-    const imgData = canvas.toDataURL("image/png");
-
-    const pdf = new jsPDF({
-      orientation: "portrait",
-      unit: "mm",
-      // format: "a4",
-    });
-
-    // const imgWidth = pdf.internal.pageSize.getWidth() - 20; 
-    // const imgHeight = (canvas.height * imgWidth) / canvas.width;
-
-    const imgWidth = canvas.width / 2; // Convert pixels to mm (approximation for 2x scale)
-    const imgHeight = canvas.height / 2;
-    pdf.setPageSize([imgWidth + 20, imgHeight + 20]); 
-    pdf.addImage(imgData, "PNG", 10, 10, imgWidth, imgHeight);
-    pdf.save("certificate.pdf");
+  
+    try {
+      // Render the element to a canvas
+      const canvas = await html2canvas(element, {
+        scale: 2, 
+        useCORS: true, 
+        logging: true, 
+        allowTaint: true, 
+      });
+  
+      const imgData = canvas.toDataURL("image/png");
+  
+      const pdf = new jsPDF({
+        orientation: "portrait",
+        unit: "mm",
+        format: "a4", 
+      });
+  
+      const imgWidth = 210; 
+      const imgHeight = (canvas.height * imgWidth) / canvas.width;
+  
+      pdf.addImage(imgData, "PNG", 0, 0, imgWidth, imgHeight); 
+      pdf.save("certificate.pdf"); 
+    } catch (error) {
+      console.error("Error generating PDF:", error);
+    }
   };
-
+  
   const location = useLocation();
   const { id, name } = location.state || {};
   const link = `https://escanify.onrender.com/profile/${id}`;
@@ -41,16 +47,15 @@ function WebCert() {
   return (
     <>
       <header className="fixed top-0 left-0 z-40 w-full bg-shubhu py-2 text-center text-white font-bold text-2xl">
-      eScanify
+        eScanify
       </header>
       <div
         ref={componentRef}
-        className=" flex flex-col relative justify-center items-center bg-gradient-to-br pt-20 pb-12"
+        className="flex flex-col relative justify-center items-center bg-gradient-to-br pt-20 pb-12"
       >
-        
-        <div className="relative shadow-black border-shubhu  shadow-3xl w-full sm:w-2/3 max-w-4xl border-2 p-10 rounded-lg overflow-hidden aspect-w-3 aspect-h-2">
-        <div className="absolute m-2 top-0 right-4 h-full rounded-xl w-6 bg-gradient-to-b from-yellow-500 via-yellow-400 to-yellow-500"></div>
-        <div className="absolute p-2 m-2 top-0 right-12 rounded-xl h-full w-2 bg-gradient-to-b from-yellow-500 via-yellow-400 to-yellow-500"></div>
+        <div className="relative shadow-black border-shubhu shadow-3xl w-full sm:w-2/3 max-w-4xl border-2 p-10 rounded-lg overflow-hidden aspect-w-3 aspect-h-2">
+          <div className="absolute m-2 top-0 right-4 h-full rounded-xl w-6 bg-gradient-to-b from-yellow-500 via-yellow-400 to-yellow-500"></div>
+          <div className="absolute p-2 m-2 top-0 right-12 rounded-xl h-full w-2 bg-gradient-to-b from-yellow-500 via-yellow-400 to-yellow-500"></div>
 
           {/* Top and Bottom Ribbon */}
           <span className="bg-shubhu w-full">
@@ -61,14 +66,15 @@ function WebCert() {
           </span>
 
           {/* Logo Section */}
-          <div className="flex flex-col relative items-center  ">
-            <div className="w-20 h-24 top-0 left-0 absolute  flex items-center justify-center">
+          <div className="flex flex-col relative items-center">
+            <div className="w-20 h-24 top-0 left-0 absolute flex items-center justify-center">
               <img src={logo} alt="Logo" className="object-contain w-24 h-14" />
             </div>
-            <div className="w-20 h-24 top-0 left-20 absolute  flex items-center justify-center">
+            <div className="w-20 h-24 top-0 left-20 absolute flex items-center justify-center">
               <img src={tnp} alt="Logo" className="object-contain w-24 h-14" />
             </div>
           </div>
+
           <div className="mt-20 flex flex-col justify-center items-center">
             <h1 className="text-5xl italic font-extrabold text-gray-800 mt-1">
               Certificate
@@ -79,46 +85,45 @@ function WebCert() {
           </div>
 
           {/* Recipient Name */}
-          <p className="text-lg  text-gray-600 text-center mt-5">
+          <p className="text-lg text-gray-600 text-center mt-5">
             This certificate is presented to:
           </p>
           <p className="text-3xl underline italic font-bold text-blue-700 text-center mt-2">
             {name}
           </p>
           <p className="text-lg text-gray-600 text-center mt-5">
-  of {year} {branch} of {college}
-</p>
-<p className="text-lg text-gray-600 text-center mt-5">
-  in recognition of their participation in the <span className="font-semibold text-blue-700">{event}</span> event.
-</p>
+            of year branch of college
+          </p>
+          <p className="text-lg text-gray-600 text-center mt-5">
+            in recognition of their participation in the <span className="font-semibold text-blue-700">event</span> event.
+          </p>
 
           {/* Certificate Message */}
           <p className="text-center text-gray-700 mt-6 leading-relaxed">
             May this achievement mark the beginning of many future successes.
           </p>
-          {/* Date of the event*/}
+          {/* Date of the event */}
           <div className="flex justify-around mt-12">
             <p className="text-gray-800 font-semibold">Date:</p>
           </div>
 
           {/* Signature Section */}
           <div className="flex justify-around mt-12">
-            
             <div className="text-center">
-              <div className="flex flex-col relative items-center  ">
-            <div className="w-20 h-12 bottom-15 right-15 absolute  flex items-center justify-center">
-              <img src={shikha_sign} alt="Director sign" className="object-contain w-24 h-14" />
-            </div>
+              <div className="flex flex-col relative items-center">
+                <div className="w-20 h-12 bottom-15 right-15 absolute flex items-center justify-center">
+                  <img src={shikha_sign} alt="Director sign" className="object-contain w-24 h-14" />
+                </div>
                 <div className="border-t-2 border-gray-300 w-32 mx-auto mb-1"></div>
-              <p className="text-gray-800 font-semibold">Shikha Agrawal</p>
-              <p className="text-gray-500 text-xs">Director</p>
+                <p className="text-gray-800 font-semibold">Shikha Agrawal</p>
+                <p className="text-gray-500 text-xs">Director</p>
+              </div>
             </div>
-          </div>
 
-          {/* QR Code */}
-
-          <div className="absolute top-10 right-6 p-2 border-2 border-gray-300 bg-white shadow-md rounded-lg">
-            <QRCodeSVG value={link} size={80} />
+            {/* QR Code */}
+            <div className="absolute top-10 right-6 p-2 border-2 border-gray-300 bg-white shadow-md rounded-lg">
+              <QRCodeSVG value={link} size={80} />
+            </div>
           </div>
         </div>
       </div>
