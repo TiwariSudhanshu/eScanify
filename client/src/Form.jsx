@@ -160,10 +160,17 @@ const Form = () => {
             className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 text-black focus:ring-blue-600"
           >
             <option value="">Select Branch</option>
-            <option value="CSE">CSE</option>
-            <option value="ECE">ECE</option>
-            <option value="ME">ME</option>
-            <option value="Civil">Civil</option>
+            <option value="AU">Automobile Engineering</option>
+            <option value="Civil">Civil Engineering</option>
+            <option value="CSE">Computer Science and Engineering</option>
+            <option value="EE">Electrical and Electronics Engineering</option>
+            <option value="ECE">Electronics and Communication Engineering</option>
+            <option value="IT">Information Technology</option>
+            <option value="Mech">Mechanical Engineering</option>
+            <option value="Petro">Petrochemical Technology</option>
+            <option value="AIML">CSE(Artificial Intelligence and Machine Learning)</option>
+            <option value="DS">CSE(Data Science)</option>
+            <option value="CSBS">Computer Science and Business System</option>
             <option value="Other">Other</option>
           </select>
         </div>
@@ -207,7 +214,7 @@ const Form = () => {
           <label className="inline-flex items-center">
             <input
               type="checkbox"
-              name="checkbox1"
+              name=" Do you want to get updates in the future about events conducted by E-Cell RGPV?"
               checked={formData.checkbox1}
               onChange={handleChange}
               className="form-checkbox h-5 w-5 text-blue-600"
@@ -220,7 +227,7 @@ const Form = () => {
           <label className="inline-flex items-center">
             <input
               type="checkbox"
-              name="checkbox2"
+              name=" Do you want to get updates in the future about events conducted by E-Cell RGPV?"
               checked={formData.checkbox2}
               onChange={handleChange}
               className="form-checkbox h-5 w-5 text-blue-600"
