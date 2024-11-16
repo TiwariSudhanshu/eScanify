@@ -5,6 +5,10 @@ import {ApiResponse} from "../utils/ApiResponse.js"
 
 export const fetchData = async ( req, res )=>{
     const { id } = req.body;
+
+    if (!mongoose.isValidObjectId(id)) {
+        throw new ApiError(400, "Invalid ID format");
+    }
     const profile = await Profile.findById(id)
 
     if(!profile){
