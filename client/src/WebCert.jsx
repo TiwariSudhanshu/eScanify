@@ -92,6 +92,10 @@ function WebCert() {
           <p className="text-center text-gray-700 mt-6 leading-relaxed">
             May this achievement mark the beginning of many future successes.
           </p>
+          {/* Date of the event*/}
+          <div className="flex justify-around mt-12">
+            <p className="text-gray-800 font-semibold">Date:</p>
+          </div>
 
           {/* Signature Section */}
           <div className="flex justify-around mt-12">
