@@ -5,8 +5,6 @@ import profileRouter from './routes/profile.routes.js';
 
 const app = express();
 
-const cors = require("cors");
-
 app.use(
   cors({
     origin: ["https://e-scanify.vercel.app"], 
