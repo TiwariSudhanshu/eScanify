@@ -70,17 +70,23 @@ function WebCert() {
               Certificate
             </h1>
             <h2 className="text-2xl font-semibold text-gray-700 mt-1">
-              of Achievement
+              of Participation
             </h2>
           </div>
 
           {/* Recipient Name */}
           <p className="text-lg  text-gray-600 text-center mt-5">
-            This certificate is proudly presented to:
+            This certificate is presented to:
           </p>
           <p className="text-3xl underline italic font-bold text-blue-700 text-center mt-2">
             {name}
           </p>
+          <p className="text-lg text-gray-600 text-center mt-5">
+  of {year} {branch} of {college}
+</p>
+<p className="text-lg text-gray-600 text-center mt-5">
+  in recognition of their participation in the <span className="font-semibold text-blue-700">{event}</span> event.
+</p>
 
           {/* Certificate Message */}
           <p className="text-center text-gray-700 mt-6 leading-relaxed">
