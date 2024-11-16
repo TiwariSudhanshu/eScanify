@@ -1,6 +1,6 @@
 {
   "rewrites": [
-    { "source": "/profile/:id", "destination": "/index.html" },
+    { "source": "/profile/:id", "destination": "/certificate" },
     { "source": "/(.*)", "destination": "/" }
   ]
 }
