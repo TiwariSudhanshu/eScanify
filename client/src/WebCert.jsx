@@ -4,7 +4,8 @@ import jsPDF from "jspdf";
 import { useLocation } from "react-router-dom";
 import { QRCodeSVG } from "qrcode.react";
 import logo from "./../public/images/logo.png";
-import tnp from './../public/images/tnp.png'
+import tnp from './../public/images/tnp.png';
+import shikha_sign from './../public/images/shikha_sign.png';
 
 function WebCert() {
   const componentRef = useRef();
@@ -53,7 +54,7 @@ function WebCert() {
 
           {/* Top and Bottom Ribbon */}
           <span className="bg-shubhu w-full">
-            <div className="absolute top-0 left-0 w-full h-14 bg-gradient-to-r from-[#040023] via-[#03095c] to-[#0078D4] rounded-br-3xl shadow-lg"></div>
+            <div className="absolute top-0 left-0 w-full h-14 bg-gradient-to-r from-[#040023] via-[#03095c] to-[#0078D4] rounded-br-4xl shadow-lg"></div>
           </span>
           <span className="bg-shubhu w-full">
             <div className="absolute bottom-0 right-0 w-full h-8 bg-gradient-to-r from-[#040023] via-[#03095c] to-[#0078D4] rounded-tl-3xl shadow-lg"></div>
@@ -104,7 +105,11 @@ function WebCert() {
           <div className="flex justify-around mt-12">
             
             <div className="text-center">
-              <div className="border-t-2 border-gray-300 w-32 mx-auto mb-1"></div>
+              <div className="flex flex-col relative items-center  ">
+            <div className="w-20 h-12 bottom-15 right-15 absolute  flex items-center justify-center">
+              <img src={shikha_sign} alt="Director sign" className="object-contain w-24 h-14" />
+            </div>
+                <div className="border-t-2 border-gray-300 w-32 mx-auto mb-1"></div>
               <p className="text-gray-800 font-semibold">Shikha Agrawal</p>
               <p className="text-gray-500 text-xs">Director</p>
             </div>
