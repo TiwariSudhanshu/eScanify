@@ -1,0 +1,88 @@
+/* Styling for the certificate container */
+.certificate-details-container {
+    /* background-color: #150a69; */
+    border: 0.05rem solid white;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    color: white;
+    text-align: center;
+}
+
+/* Certificate title styling */
+.certificate-title {
+    margin-bottom: 20px;
+    color: #f8f8ff;
+}
+
+/* Content layout */
+.certificate-content {
+    width: 100%;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Styling for each detail item */
+.detail-item {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #666;
+    padding-bottom: 8px;
+}
+
+/* Label styling */
+.detail-label {
+    font-weight: bold;
+    font-size: 1.1em;
+    color: #b8b8d4;
+}
+
+/* Value styling */
+.detail-value {
+    font-size: 1em;
+    color: #e8e8ff;
+}
+
+/* Footer styling */
+.certificate-footer {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #444;
+}
+
+.footer-text {
+    font-size: 0.9em;
+    color: #f8f8ff;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .certificate-details-container {
+        padding: 20px;
+        width: 90vw;
+    }
+    
+    .certificate-title {
+        font-size: 2em;
+    }
+
+    .detail-item {
+        font-size: 1em;
+    }
+}
+
+/* Smooth transition for hover effects */
+.detail-item,
+.certificate-footer {
+    transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+.detail-item:hover .detail-label,
+.detail-item:hover .detail-value {
+    color: #d1d1ff;
+}
+
+/* Additional styling to enhance the visual feel */
+
