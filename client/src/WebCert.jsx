@@ -37,7 +37,7 @@ function WebCert() {
   return (
     <>
       <header className="fixed top-0 left-0 z-40 w-full bg-shubhu py-2 text-center text-white font-bold text-2xl">
-        Welcome to eScanify
+      eScanify
       </header>
       <div
         ref={componentRef}
