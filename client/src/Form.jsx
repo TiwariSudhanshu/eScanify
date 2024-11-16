@@ -28,7 +28,7 @@ const Form = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("/api/v1/profile/save", {
+      const response = await fetch("https://escanify.onrender.com/api/v1/profile/save", {
         method: "post",
         headers: {
           "Content-Type": "application/json",

@@ -42,7 +42,7 @@ function WebCert() {
   
   const location = useLocation();
   const { id, name } = location.state || {};
-  const link = `https://escanify.onrender.com/profile/${id}`;
+  const link = `https://https://e-scanify.vercel.app/profile/${id}`;
 
   return (
     <>
