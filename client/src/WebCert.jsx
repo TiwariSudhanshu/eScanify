@@ -12,20 +12,23 @@ function WebCert() {
   const generatePDF = async () => {
     const element = componentRef.current;
     const canvas = await html2canvas(element, {
-      scale: 2, // Higher scale for better quality
-      useCORS: true, // Allows cross-origin images like logos to render correctly
+      scale: 2,
+      useCORS: true, 
     });
     const imgData = canvas.toDataURL("image/png");
 
     const pdf = new jsPDF({
       orientation: "portrait",
       unit: "mm",
-      format: "a4",
+      // format: "a4",
     });
 
-    const imgWidth = pdf.internal.pageSize.getWidth() - 20; // Adjust width with margins
-    const imgHeight = (canvas.height * imgWidth) / canvas.width;
+    // const imgWidth = pdf.internal.pageSize.getWidth() - 20; 
+    // const imgHeight = (canvas.height * imgWidth) / canvas.width;
 
+    const imgWidth = canvas.width / 2; // Convert pixels to mm (approximation for 2x scale)
+    const imgHeight = canvas.height / 2;
+    pdf.setPageSize([imgWidth + 20, imgHeight + 20]); 
     pdf.addImage(imgData, "PNG", 10, 10, imgWidth, imgHeight);
     pdf.save("certificate.pdf");
   };
