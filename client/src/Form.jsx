@@ -210,29 +210,29 @@ const Form = () => {
           ></textarea>
         </div>
 
-        <div className="mb-4">
+{/*         <div className="mb-4">
           <label className="inline-flex items-center">
             <input
               type="checkbox"
-              name="CheckBox1"
+              name="Check Box1"
               checked={formData.checkbox1}
               onChange={handleChange}
               className="form-checkbox h-5 w-5 text-blue-600"
             />
             <span className="ml-2 text-black font-bold"> Do you want to get updates in the future about events conducted by E-Cell RGPV?</span>
           </label>
-        </div>
+        </div> */}
 
         <div className="mb-4">
           <label className="inline-flex items-center">
             <input
               type="checkbox"
-              name="CheckBox2"
+              name="Check Box2"
               checked={formData.checkbox2}
               onChange={handleChange}
               className="form-checkbox h-5 w-5 text-blue-600"
             />
-            <span className="ml-2 text-black font-bold">Could you please confirm if the details provided above are accurate and complete?</span>
+            <span className="ml-2 text-black">Could you please confirm if the details provided above are accurate and complete?</span>
           </label>
         </div>
 
