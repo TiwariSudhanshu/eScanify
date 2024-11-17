@@ -10,8 +10,7 @@ app.use(
     origin: [
       "https://e-scanify.vercel.app", 
       "http://localhost:5173",
-      "https://673a017a419b9300080d2f3e--escanify.netlify.app",
-      "https://escanify.netlify.app"
+      "https://673a31c20571820f883b9e72--escanify.netlify.app",
     ],
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     credentials: true, // Enable this if your requests involve cookies or credentials
