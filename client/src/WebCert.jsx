@@ -40,7 +40,7 @@ function WebCert() {
 
   const location = useLocation();
   const { id, name, event } = location.state || {};
-  const link = `https://673a31c20571820f883b9e72--escanify.netlify.app//profile/${id}`;
+  const link = `https://673a31c20571820f883b9e72--escanify.netlify.app/profile/${id}`;
 
   return (
     <>
