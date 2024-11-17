@@ -99,12 +99,11 @@ function WebCert() {
           
         </div>
         <style jsx>{`
-            @media (max-width: 768px) {
+            @media (max-width: 470px) {
               .description{
                 top: 55%;
-                font-size: 5px;
+                font-size:8px;
                 width: 80%;
-                margin-bottom:20px;
               }
 
               .qr {
@@ -114,7 +113,8 @@ function WebCert() {
               }
 
               .name{
-              font-size: 14px; !important
+              top:4rem !important;
+              font-size: 14px; !important;
               font-weight: bold;
               }
             }
