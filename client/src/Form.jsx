@@ -111,7 +111,7 @@ const Form = () => {
           />
         </div>
 
-        <div className="mb-4">
+{/*         <div className="mb-4">
           <label className="block text-black font-bold">Mobile No.*</label>
           <input
             type="tel"
@@ -122,7 +122,7 @@ const Form = () => {
             className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 text-black focus:ring-blue-600"
           />
         </div>
-
+ */}
         <div className="mb-4">
           <label className="block text-black font-bold">College*</label>
           <input
@@ -177,7 +177,7 @@ const Form = () => {
           </select>
         </div>
 
-        <div className="mb-4">
+{/*         <div className="mb-4">
           <label className="block text-black font-bold">Enrollment No.*</label>
           <input
             type="text"
@@ -187,7 +187,7 @@ const Form = () => {
             className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 text-black focus:ring-blue-600"
           />
         </div>
-
+ */}
         <div className="mb-4">
           <label className="block text-black font-bold">Event Name*</label>
           <input
@@ -243,7 +243,7 @@ const Form = () => {
               name="Check Box2"
               checked={formData.checkbox2}
               onChange={handleChange}
-              className="form-checkbox h-5 w-5 text-blue-600"
+              className="form-checkbox h-6 w-6 text-blue-600"
             />
             <span className="ml-2 text-black">Could you please confirm if the details provided above are accurate and complete?</span>
           </label>
