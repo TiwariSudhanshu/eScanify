@@ -14,7 +14,7 @@ function WebCert() {
     try {
       // Render the element to a canvas
       const canvas = await html2canvas(element, {
-        scale: 2,
+        scale: 3,
         useCORS: true,
         logging: true,
         allowTaint: false,
@@ -28,7 +28,7 @@ function WebCert() {
         format: "a4",
       });
 
-      const imgWidth = 210;
+      const imgWidth = 297;
       const imgHeight = (canvas.height * imgWidth) / canvas.width;
 
       pdf.addImage(imgData, "PNG", 0, 0, imgWidth, imgHeight);
@@ -39,7 +39,7 @@ function WebCert() {
   };
 
   const location = useLocation();
-  const { id, name } = location.state || {};
+  const { id, name, event } = location.state || {};
   const link = `https://e-scanify.vercel.app/profile/${id}`;
 
   return (
@@ -53,10 +53,14 @@ function WebCert() {
           ref={componentRef}
           className="relative border-2 border-black rounded-lg w-2/3"
         >
-          <img className="rounded-lg border-black" src={certificate} alt="Certificate" />
+          <img
+            className="rounded-lg border-black"
+            src={certificate}
+            alt="Certificate"
+          />
 
           <p
-            className="absolute font-bold text-lg sm:text-xl md:text-2xl lg:text-3xl"
+            className="name absolute font-bold text-3xl "
             style={{
               top: "40%",
               left: "50%",
@@ -67,7 +71,7 @@ function WebCert() {
           </p>
 
           <p
-            className="absolute text-xs sm:text-sm md:text-base lg:text-lg px-2 text-center"
+            className="description absolute  px-2 text-center"
             style={{
               top: "50%",
               left: "50%",
@@ -88,12 +92,33 @@ function WebCert() {
             }}
           >
             <QRCodeSVG
-              value={link}
-              size="80"
-              className="w-16 h-16 sm:w-12 sm:h-12 md:w-16 md:h-16 lg:w-24 lg:h-24"
+              value={QRCodeSVG}
+              className=" qr w-16 h-16 sm:w-12 sm:h-12 md:w-16 md:h-16 lg:w-20 lg:h-20"
             />
           </div>
+          
         </div>
+        <style jsx>{`
+            @media (max-width: 470px) {
+              .description{
+                top: 55%;
+                font-size:8px;
+                width: 80%;
+              }
+
+              .qr {
+                width: 30px !important;
+                height: 30px !important;
+                bottom: 8%;
+              }
+
+              .name{
+              top:4rem !important;
+              font-size: 14px; !important;
+              font-weight: bold;
+              }
+            }
+          `}</style>
       </div>
 
       {/* Action Buttons */}
