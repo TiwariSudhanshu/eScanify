@@ -40,7 +40,7 @@ function WebCert() {
 
   const location = useLocation();
   const { id, name, event } = location.state || {};
-  const link = `https://e-scanify.vercel.app/profile/${id}`;
+  const link = `https://6739fff1a0fc2eda865db429--escanify.netlify.app/profile/${id}`;
 
   return (
     <>
