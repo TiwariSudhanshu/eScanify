@@ -19,9 +19,10 @@ const Form = () => {
       [name]: type === "checkbox" ? checked : value,
     });
   };
-
+  const [loader, setLoader] = useState(false);
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoader(true);
     try {
       const response = await fetch("https://escanify.onrender.com/api/v1/profile/save", {
         method: "post",
@@ -52,6 +53,8 @@ const Form = () => {
     } catch (error) {
       toast.error("Error");
       console.log("Error is : ", error);
+    } finally{
+      setLoader(false);
     }
   };
 
@@ -242,12 +245,21 @@ const Form = () => {
           </label>
         </div> */}
 
+       {/* <div> */}
+      {loader ? (
+        <div
+          className="w-full bg-blue-600 text-white font-bold py-2 px-4 rounded-md outline text-shubhu transition duration-300 text-center"
+        >
+          Loading...
+        </div>
+      ) : (
         <button
           type="submit"
           className="w-full hover:bg-blue-600 hover:text-white font-bold py-2 px-4 rounded-md outline text-shubhu transition duration-300"
         >
           Submit
         </button>
+      )}
       </form>
       </div>
       </main>
