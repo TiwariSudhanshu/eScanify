@@ -5,19 +5,12 @@ import {ApiResponse} from "../utils/ApiResponse.js"
 export const saveData = async(req, res)=>{
     
    try {
-     const { enrollment, name, eventName, eventDate, email, mobile, year, branch, college} = req.body;
- 
-     const existedProfile = await Profile.findOne({enrollment})
- 
-     if(existedProfile){
-         throw new ApiError(400, "Profile with this enrollment no already exist")
-     }
+     const { name, eventName, eventDate, email, year, branch, college} = req.body;
+
  
      const  profile = await Profile.create({
-         enrollment,
          name,
          email,
-         mobile,
          eventName,
          eventDate,
          branch,

@@ -5,16 +5,11 @@ const Form = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    mobile: "",
     college: "",
     year: "",
     branch: "",
-    enrollment: "",
     eventName: "",
     eventDate: "",
-    suggestions: "",
-    checkbox1: false,
-    checkbox2: false,
   });
   const navigate = useNavigate();
   const handleChange = (e) => {
@@ -36,11 +31,9 @@ const Form = () => {
         body: JSON.stringify({
           name: formData.name,
           email: formData.email,
-          mobile: formData.mobile,
           college: formData.college,
           year: formData.year,
           branch: formData.branch,
-          enrollment: formData.enrollment,
           eventName: formData.eventName,
           eventDate: formData.eventDate,
         }),
@@ -211,7 +204,7 @@ const Form = () => {
           />
         </div>
 
-        <div className="mb-4">
+        {/* <div className="mb-4">
           <label className="block col-span-3 row-span-7 text-black font-bold">
             Any Suggestions
           </label>
@@ -221,7 +214,7 @@ const Form = () => {
             onChange={handleChange}
             className="w-full row-span-7 col-span-3 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 text-black focus:ring-blue-600"
           ></textarea>
-        </div>
+        </div> */}
 
 {/*         <div className="mb-4">
           <label className="inline-flex items-center">
@@ -236,7 +229,7 @@ const Form = () => {
           </label>
         </div> */}
 
-        <div className="mb-4">
+        {/* <div className="mb-4">
           <label className="inline-flex items-center">
             <input
               type="checkbox"
@@ -247,7 +240,7 @@ const Form = () => {
             />
             <span className="ml-2 text-black">Could you please confirm if the details provided above are accurate and complete?</span>
           </label>
-        </div>
+        </div> */}
 
         <button
           type="submit"
