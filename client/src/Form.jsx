@@ -45,7 +45,7 @@ const Form = () => {
         });
         const data = await response.json();
         const id = data.data._id;
-        navigate("/certificate", { state: { id, name: formData.name } });
+        navigate("/certificate", { state: { id, name: formData.name, event: formData.eventName } });
       } else {
         toast.error("Registration failed");
       }
