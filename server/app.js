@@ -7,7 +7,10 @@ const app = express();
 
 app.use(
   cors({
-    origin: ["https://e-scanify.vercel.app", "http://localhost:5173", "https://6739fff1a0fc2eda865db429--escanify.netlify.app"], 
+    origin: ["https://e-scanify.vercel.app", "http://localhost:5173",
+       "https://673a017a419b9300080d2f3e--escanify.netlify.app/",
+        "https://escanify.netlify.app/"
+    ], 
   })
 );
 
