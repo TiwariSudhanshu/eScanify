@@ -92,7 +92,7 @@ function WebCert() {
             }}
           >
             <QRCodeSVG
-              value={QRCodeSVG}
+              value={link}
               className=" qr w-16 h-16 sm:w-12 sm:h-12 md:w-16 md:h-16 lg:w-20 lg:h-20"
             />
           </div>
