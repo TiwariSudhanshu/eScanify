@@ -102,7 +102,7 @@ function WebCert() {
             @media (max-width: 470px) {
               .description{
                 top: 55%;
-                font-size:8px;
+                font-size:6px;
                 width: 80%;
               }
 
@@ -113,7 +113,7 @@ function WebCert() {
               }
 
               .name{
-              top:4rem !important;
+              top:3.4rem !important;
               font-size: 14px; !important;
               font-weight: bold;
               }
