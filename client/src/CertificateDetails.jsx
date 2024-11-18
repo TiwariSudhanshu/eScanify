@@ -42,6 +42,12 @@ const CertificateDetails = () => {
 
   const { name, eventName, eventDate, branch, college, year, enrollment } = profile;
 
+  const formattedEventDate = new Date(eventDate).toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+
   return (
     <div className="flex flex-col items-center py-10  bg-gradient-to-br from-indigo-100 via-blue-100 to-sky-50 min-h-screen">
       <header className="fixed top-0 left-0 z-40 w-full bg-shubhu py-2 text-center text-white font-bold text-2xl">
@@ -67,7 +73,7 @@ const CertificateDetails = () => {
         {/* Date Section */}
         <div className="flex items-center justify-between space-x-4 bg-blue-50 p-4 rounded-lg">
               <span className="text-lg text-shubhu font-bold">Date:</span>
-              <span className="text-lg font-semibold text-gray-800">{eventDate}</span>
+              <span className="text-lg font-semibold text-gray-800">{formattedEventDate}</span>
             </div>
 
         {/* Branch Section */}
@@ -86,12 +92,6 @@ const CertificateDetails = () => {
         <div className="flex items-center justify-between space-x-4 bg-blue-50 p-4 rounded-lg">
               <span className="text-lg text-shubhu font-bold">Year:</span>
               <span className="text-lg font-semibold text-gray-800">{year}</span>
-            </div>
-
-        {/* Enrollment Section */}
-        <div className="flex items-center justify-between space-x-4 bg-blue-50 p-4 rounded-lg">
-              <span className="text-lg text-shubhu font-bold">Enrollment No.:</span>
-              <span className="text-lg font-semibold text-gray-800">{enrollment}</span>
             </div>
       </div>
 

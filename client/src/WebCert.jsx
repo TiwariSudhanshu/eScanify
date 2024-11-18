@@ -40,7 +40,7 @@ function WebCert() {
 
   const location = useLocation();
   const { id, name, event } = location.state || {};
-  const link = `https://e-scanify.vercel.app/profile/${id}`;
+  const link = `https://escanify-frsq.onrender.com/#/profile/${id}`;
 
   return (
     <>
@@ -92,7 +92,7 @@ function WebCert() {
             }}
           >
             <QRCodeSVG
-              value={QRCodeSVG}
+              value={link}
               className=" qr w-16 h-16 sm:w-12 sm:h-12 md:w-16 md:h-16 lg:w-20 lg:h-20"
             />
           </div>
