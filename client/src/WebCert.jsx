@@ -14,7 +14,7 @@ function WebCert() {
     try {
       // Render the element to a canvas
       const canvas = await html2canvas(element, {
-        scale: 3,
+        scale: 1,
         useCORS: true,
         logging: true,
         allowTaint: false,
