@@ -5,7 +5,8 @@ import certificate from "./../public/images/ecellcertificate2.png";
 
 function Certificate({data}) {
   const name = data.name;
-  const link = 'wwww.google.com'
+  const id = data._id;
+  const link = `https://escanify-frsq.onrender.com/#/profile/${id}`
 
     return (
         <>
