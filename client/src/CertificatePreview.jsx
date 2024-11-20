@@ -15,7 +15,7 @@ function CertificatePreview() {
     const fetchData = async()=>{
       // setLoader(true);
       try {
-        const response = await fetch("http://localhost:8080/api/v1/profile/fetchAll",{
+        const response = await fetch("https://escanify.onrender.com/api/v1/profile/fetchAll",{
           method: 'get'
         })
         if(response.ok){
