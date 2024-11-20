@@ -3,6 +3,7 @@ import Certificate from './Certificate'
 import { toast } from "react-toastify";
 import jsPDF from 'jspdf';
 import JSZip from "jszip";
+import {certificateTemplate} from "../public/images/ecellcertificate2.png"
 import { saveAs } from "file-saver";
 // import { QRCodeSVG } from 'qrcode.react';
 import QRCode from 'qrcode'
@@ -44,7 +45,7 @@ function CertificatePreview() {
     // Background Image (Certificate Template)
     const imgWidth = 800;
     const imgHeight = 600; 
-    const certificateImage = "./../public/images/ecellcertificate2.png";
+    const certificateImage = {certificateTemplate};
     const img = new Image();
     img.src = certificateImage;
     
