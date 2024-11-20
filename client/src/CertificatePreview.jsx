@@ -45,44 +45,47 @@ function CertificatePreview() {
     const imgWidth = 800;
     const imgHeight = 600; 
     const certificateImage = "./../public/images/ecellcertificate2.png";
-  
+    const img = new Image();
+    img.src = certificateImage;
+    
     // Adding the certificate background
-    doc.addImage(certificateImage, "PNG", 0, 0, imgWidth, imgHeight);
-  
-    // Adding Name
-    doc.setFontSize(24);
-    doc.setFont("helvetica", "bold");
-    doc.text(profile.name || "Participant Name", imgWidth / 2, 260, {
-      align: "center",
+    return new Promise((resolve) => {
+      img.onload = async () => {
+        doc.addImage(img, "PNG", 0, 0, 800, 600);
+
+        // Add participant name
+        doc.setFontSize(24);
+        doc.setFont("helvetica", "bold");
+        doc.text(profile.name || "Participant Name", 400, 260, {
+          align: "center",
+        });
+
+        // Add description
+        doc.setFontSize(14);
+        doc.setFont("helvetica", "normal");
+        doc.text(
+          "has actively participated in the event organized by E-Cell RGPV.",
+          400,
+          320,
+          { align: "center" }
+        );
+        doc.text(
+          "We acknowledge your commitment and enthusiasm in advancing your entrepreneurship skills.",
+          400,
+          340,
+          { align: "center" }
+        );
+
+        // Generate and add QR Code
+        const qrCodeLink = `https://escanify-frsq.onrender.com/#/profile/${profile._id}`;
+        const qrCodeCanvas = document.createElement("canvas");
+        await QRCode.toCanvas(qrCodeCanvas, qrCodeLink, { width: 160 });
+        doc.addImage(qrCodeCanvas.toDataURL("image/png"), "PNG", 50, 500);
+
+        // Resolve with PDF blob
+        resolve(doc.output("blob"));
+      };
     });
-  
-    // Adding Description
-    doc.setFontSize(14);
-    doc.setFont("helvetica", "normal");
-    doc.text(
-      "has actively participated in the event organized by E-Cell RGPV.",
-      imgWidth / 2,
-      320,
-      { align: "center" }
-    );
-    doc.text(
-      "We acknowledge your commitment and enthusiasm in advancing your entrepreneurship skills.",
-      imgWidth / 2,
-      340,
-      { align: "center" }
-    );
-    const id = profile._id;
-    // Adding QR Code
-    const qrCodeLink =  `https://escanify-frsq.onrender.com/#/profile/${id}`; // Replace with the appropriate link
-    const qrCodeSize = 160;
-    const qrCodeX = 50; 
-    const qrCodeY = 500; 
-    const qrCodeCanvas = document.createElement("canvas");
-    QRCode.toCanvas(qrCodeCanvas, qrCodeLink, { width: qrCodeSize });
-    doc.addImage(qrCodeCanvas.toDataURL("image/png"), "PNG", qrCodeX, qrCodeY);
-  
-    // Return the PDF as a Blob
-    return doc.output("blob");
   };
   
 
@@ -92,13 +95,15 @@ function CertificatePreview() {
        toast.error("No profiles to download certificates for");
          return;
      }
- 
-     const zip = new JSZip();
- 
-     profiles.forEach((profile, index)=>{
-       const pdfBlob = generatePDF(profile);
-       zip.file(`${profile.name}.pdf`, pdfBlob);
-     })
+      const zip = new JSZip();
+     const pdfPromises = profiles.map((profile) => generatePDF(profile));
+
+     // Wait for all PDFs to generate
+     const pdfBlobs = await Promise.all(pdfPromises);
+
+     pdfBlobs.forEach((blob, index) => {
+       zip.file(`${profiles[index].name}.pdf`, blob);
+     });
  
      const zipBlob = await zip.generateAsync({ type: "blob" });
        saveAs(zipBlob, "Certificates.zip");
@@ -117,6 +122,7 @@ function CertificatePreview() {
       </div>
     );
   }
+  
 
   return (
     <>
