@@ -21,3 +21,16 @@ export const fetchData = async ( req, res )=>{
     )
 
 }
+
+export const fetchAll = async(req,res)=>{
+    const profiles = await Profile.find();
+
+    if(!profiles){
+        throw new ApiError(400, "Profile not fetched")
+    }
+
+    res.status(200).json(
+        new ApiResponse(200, profiles, "Fetched all profiles")
+    )
+
+}
