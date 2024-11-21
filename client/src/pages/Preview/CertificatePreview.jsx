@@ -9,11 +9,11 @@ import certificate from "./ecellcertificate2.png"
 import QRCode from "qrcode";
 function CertificatePreview() {
   const [profiles, setProfiles] = useState([]);
-  // const [loader, setLoader] = useState(false)
+  const [loader, setLoader] = useState(false)
 
   useEffect(() => {
     const fetchData = async () => {
-      // setLoader(true);
+      setLoader(true);
       try {
         const response = await fetch(
           "https://escanify.onrender.com/api/v1/profile/fetchAll",
@@ -31,7 +31,7 @@ function CertificatePreview() {
         toast.error("Error in fetching");
         console.log("Error in fetching :", error);
       } finally {
-        // setLoader(false)
+        setLoader(false)
       }
     };
     fetchData();
@@ -104,11 +104,13 @@ function CertificatePreview() {
   
 
   const handleDownload = async () => {
+    
     try {
       if (profiles.length === 0) {
         toast.error("No profiles to download certificates for");
         return;
       }
+        setLoader(true)
   
       const zip = new JSZip();
       const promises = profiles.map(async (profile) => {
@@ -130,6 +132,8 @@ function CertificatePreview() {
     } catch (error) {
       toast.error("Error downloading certificates");
       console.error("Error in downloading certificates:", error);
+    } finally {
+      setLoader(false)
     }
   };
   
@@ -145,19 +149,49 @@ function CertificatePreview() {
 
   return (
     <>
-      <button
-        onClick={handleDownload}
-        class="  mt-[8vmax] w-auto mx-[43%] bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center"
-      >
+    <button
+    onClick={handleDownload}
+    disabled={loader}
+    className={`mt-[8vmax] w-auto mx-[43%] ${
+      loader ? "bg-gray-400" : "bg-gray-300 hover:bg-gray-400"
+    } text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center`}
+  >
+    {loader ? (
+      <>
         <svg
-          class="fill-current  w-4 h-4 mr-2"
+          className="animate-spin w-4 h-4 mr-2"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+        >
+          <circle
+            className="opacity-25"
+            cx="12"
+            cy="12"
+            r="10"
+            stroke="currentColor"
+            strokeWidth="4"
+          ></circle>
+          <path
+            className="opacity-75"
+            fill="currentColor"
+            d="M4 12a8 8 0 018-8v8H4z"
+          ></path>
+        </svg>
+        Loading...
+      </>
+    ) : (
+      <>
+        <svg
+          className="fill-current w-4 h-4 mr-2"
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 20 20"
         >
           <path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z" />
         </svg>
         <span>Download All</span>
-      </button>
+      </>
+    )}
+  </button>
       {profiles.map((profile, index) => (
         <Certificate key={index} data={profile} />
       ))}
