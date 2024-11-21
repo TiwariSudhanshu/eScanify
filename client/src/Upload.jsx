@@ -42,7 +42,8 @@ function Upload() {
     
 
   return (
-    <div>
+    <div className="upload">
+        <h1>Upload <span>and</span> generate</h1>
       <input type="file" accept='xlsx, xls' onChange={handleFileChange}/>
       <button onClick={handleSubmit}>Submit</button>
     </div>
