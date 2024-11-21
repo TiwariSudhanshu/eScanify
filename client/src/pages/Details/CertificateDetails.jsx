@@ -10,7 +10,7 @@ const CertificateDetails = () => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          "/api/v1/profile/fetch",
+          "https://escanify.onrender.com/api/v1/profile/fetch",
           {
             method: "post",
             headers: {

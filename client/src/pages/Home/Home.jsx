@@ -39,7 +39,7 @@ function Home() {
     e.preventDefault();
     setLoader(true);
     try {
-      const response = await fetch("/api/v1/profile/save", {
+      const response = await fetch("https://escanify.onrender.com/api/v1/profile/save", {
         method: "post",
         headers: {
           "Content-Type": "application/json",
@@ -86,7 +86,7 @@ function Home() {
     const formData = new FormData();
     formData.append("file", file);
     try {
-      const response = await fetch("/api/v1/profile/saveExcel", {
+      const response = await fetch("https://escanify.onrender.com/api/v1/profile/saveExcel", {
         method: "Post",
         body: formData,
       });
