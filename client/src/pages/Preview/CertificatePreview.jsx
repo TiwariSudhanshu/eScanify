@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 import jsPDF from "jspdf";
 import JSZip from "jszip";
 import { saveAs } from "file-saver";
+import certificate from "./ecellcertificate2.png"
 // import { QRCodeSVG } from 'qrcode.react';
 import QRCode from "qrcode";
 function CertificatePreview() {
@@ -36,33 +37,37 @@ function CertificatePreview() {
     fetchData();
   }, []);
 
-  const generatePDF = (profile, callback) => {
-    const doc = new jsPDF({
-      orientation: "landscape",
-      unit: "px",
-      format: [800, 600],
-    });
+  const generatePDF = async (profile) => {
+    try {
+      const doc = new jsPDF({
+        orientation: "landscape",
+        unit: "px",
+        format: [800, 600],
+      });
   
-    const imgWidth = 800;
-    const imgHeight = 600;
-    const certificateImage = "./ecellcertificate2.png";
+      const imgWidth = 800;
+      const imgHeight = 600;
   
-    // Create an image object
-    const img = new Image();
-    img.src = certificateImage;
+      // Load the certificate background image
+      const loadImage = (src) =>
+        new Promise((resolve, reject) => {
+          const img = new Image();
+          img.src = src;
+          img.onload = () => resolve(img);
+          img.onerror = (err) => reject(`Failed to load image: ${src}`);
+        });
   
-    img.onload = () => {
-      // Adding the certificate background
-      doc.addImage(img, "PNG", 0, 0, imgWidth, imgHeight);
+      const img = await loadImage(certificate); // Pass the imported certificate path
+      doc.addImage(img, "PNG", 0, 0, imgWidth, imgHeight); // Add image to PDF
   
-      // Adding Name
+      // Add participant's name
       doc.setFontSize(24);
       doc.setFont("helvetica", "bold");
       doc.text(profile.name || "Participant Name", imgWidth / 2, 260, {
         align: "center",
       });
   
-      // Adding Description
+      // Add description
       doc.setFontSize(14);
       doc.setFont("helvetica", "normal");
       doc.text(
@@ -78,25 +83,24 @@ function CertificatePreview() {
         { align: "center" }
       );
   
-      // Adding QR Code
+      // Generate QR code
       const id = profile._id;
       const qrCodeLink = `https://escanify-frsq.onrender.com/#/profile/${id}`;
-      const qrCodeCanvas = document.createElement("canvas");
-      QRCode.toCanvas(qrCodeCanvas, qrCodeLink, { width: 100 }, (error) => {
-        if (!error) {
-          doc.addImage(qrCodeCanvas.toDataURL("image/png"), "PNG", 50, 500);
-          // Return the PDF as a Blob via the callback
-          callback(doc.output("blob"));
-        } else {
-          console.error("Error generating QR code:", error);
-        }
-      });
-    };
+      const qrCodeDataUrl = await QRCode.toDataURL(qrCodeLink, { width: 100 });
   
-    img.onerror = (err) => {
-      console.error("Error loading certificate image:", err);
-    };
+      // Add QR code to the certificate
+      doc.addImage(qrCodeDataUrl, "PNG", 50, 500);
+  
+      // Return the PDF as a Blob
+      return doc.output("blob");
+    } catch (error) {
+      console.error("Error generating PDF for profile:", profile, error);
+      throw error;
+    }
   };
+  
+  
+  
   
 
   const handleDownload = async () => {
@@ -107,17 +111,17 @@ function CertificatePreview() {
       }
   
       const zip = new JSZip();
-      const promises = profiles.map(
-        (profile) =>
-          new Promise((resolve) => {
-            generatePDF(profile, (pdfBlob) => {
-              zip.file(`${profile.name}.pdf`, pdfBlob);
-              resolve();
-            });
-          })
-      );
+      const promises = profiles.map(async (profile) => {
+        try {
+          const pdfBlob = await generatePDF(profile);
+          zip.file(`${profile.name}.pdf`, pdfBlob);
+        } catch (error) {
+          console.error(`Error processing profile: ${profile.name}`, error);
+          toast.error(`Failed to generate certificate for ${profile.name}`);
+        }
+      });
   
-      await Promise.all(promises);
+      await Promise.all(promises); // Ensure all profiles are processed
   
       const zipBlob = await zip.generateAsync({ type: "blob" });
       saveAs(zipBlob, "Certificates.zip");
@@ -128,6 +132,7 @@ function CertificatePreview() {
       console.error("Error in downloading certificates:", error);
     }
   };
+  
   
 
   if (!profiles) {
