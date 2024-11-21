@@ -3,7 +3,7 @@ import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 import { useLocation } from "react-router-dom";
 import { QRCodeSVG } from "qrcode.react";
-import certificate from "./../public/images/ecellcertificate2.png";
+import certificate from "../../../public/images/ecellcertificate2.png";
 
 function WebCert() {
   const componentRef = useRef();
@@ -47,6 +47,21 @@ function WebCert() {
       <header className="fixed top-0 left-0 z-40 w-full bg-shubhu py-2 text-center text-white font-bold text-2xl">
         eScanify
       </header>
+      <div className="flex justify-center">
+        <button
+          onClick={generatePDF}
+          class="  mt-[8vmax] w-auto mx-[43%] bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center"
+        >
+          <svg
+            class="fill-current  w-4 h-4 mr-2"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 20 20"
+          >
+            <path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z" />
+          </svg>
+          <span>Download</span>
+        </button>
+      </div>
       {/*certificate*/}
       <div className="flex flex-col items-center justify-center bg-gradient-to-br pt-20 pb-12">
         <div
@@ -96,7 +111,6 @@ function WebCert() {
               className=" qr w-16 h-16 sm:w-12 sm:h-12 md:w-16 md:h-16 lg:w-20 lg:h-20"
             />
           </div>
-          
         </div>
         <style jsx>{`
             @media (max-width: 470px) {
@@ -122,14 +136,6 @@ function WebCert() {
       </div>
 
       {/* Action Buttons */}
-      <div className="flex justify-center">
-        <button
-          onClick={generatePDF}
-          className="mt-6 px-4 py-2 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-600"
-        >
-          Download Certificate
-        </button>
-      </div>
     </>
   );
 }

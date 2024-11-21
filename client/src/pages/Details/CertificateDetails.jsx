@@ -9,15 +9,18 @@ const CertificateDetails = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("https://escanify.onrender.com/api/v1/profile/fetch", {
-          method: "post",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            id,
-          }),
-        });
+        const response = await fetch(
+          "/api/v1/profile/fetch",
+          {
+            method: "post",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              id,
+            }),
+          }
+        );
         if (response.ok) {
           const data = await response.json();
           setProfile(data.data);
@@ -40,7 +43,8 @@ const CertificateDetails = () => {
     );
   }
 
-  const { name, eventName, eventDate, branch, college, year, enrollment } = profile;
+  const { name, eventName, eventDate, branch, college, year, enrollment } =
+    profile;
 
   const formattedEventDate = new Date(eventDate).toLocaleDateString("en-US", {
     year: "numeric",
@@ -66,33 +70,37 @@ const CertificateDetails = () => {
 
         {/* Event Section */}
         <div className="flex items-center justify-between space-x-4 bg-blue-50 p-4 rounded-lg">
-              <span className="text-lg text-shubhu font-bold">Event:</span>
-              <span className="text-lg font-semibold text-gray-800">{eventName}</span>
-            </div>
+          <span className="text-lg text-shubhu font-bold">Event:</span>
+          <span className="text-lg font-semibold text-gray-800">
+            {eventName}
+          </span>
+        </div>
 
         {/* Date Section */}
         <div className="flex items-center justify-between space-x-4 bg-blue-50 p-4 rounded-lg">
-              <span className="text-lg text-shubhu font-bold">Date:</span>
-              <span className="text-lg font-semibold text-gray-800">{formattedEventDate}</span>
-            </div>
+          <span className="text-lg text-shubhu font-bold">Date:</span>
+          <span className="text-lg font-semibold text-gray-800">
+            {formattedEventDate}
+          </span>
+        </div>
 
         {/* Branch Section */}
         <div className="flex items-center justify-between space-x-4 bg-blue-50 p-4 rounded-lg">
-              <span className="text-lg text-shubhu font-bold">Branch:</span>
-              <span className="text-lg font-semibold text-gray-800">{branch}</span>
-            </div>
+          <span className="text-lg text-shubhu font-bold">Branch:</span>
+          <span className="text-lg font-semibold text-gray-800">{branch}</span>
+        </div>
 
         {/* College Section */}
         <div className="flex items-center justify-between space-x-4 bg-blue-50 p-4 rounded-lg">
-              <span className="text-lg text-shubhu font-bold">College:</span>
-              <span className="text-lg font-semibold text-gray-800">{college}</span>
-            </div>
+          <span className="text-lg text-shubhu font-bold">College:</span>
+          <span className="text-lg font-semibold text-gray-800">{college}</span>
+        </div>
 
         {/* Year Section */}
         <div className="flex items-center justify-between space-x-4 bg-blue-50 p-4 rounded-lg">
-              <span className="text-lg text-shubhu font-bold">Year:</span>
-              <span className="text-lg font-semibold text-gray-800">{year}</span>
-            </div>
+          <span className="text-lg text-shubhu font-bold">Year:</span>
+          <span className="text-lg font-semibold text-gray-800">{year}</span>
+        </div>
       </div>
 
       <div className="text-center mt-6">
