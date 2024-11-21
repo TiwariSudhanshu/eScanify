@@ -45,7 +45,7 @@ function CertificatePreview() {
   
     const imgWidth = 800;
     const imgHeight = 600;
-    const certificateImage = "./../public/images/ecellcertificate2.png";
+    const certificateImage = "./ecellcertificate2.png";
   
     // Create an image object
     const img = new Image();

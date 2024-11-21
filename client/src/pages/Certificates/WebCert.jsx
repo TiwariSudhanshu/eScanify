@@ -3,7 +3,7 @@ import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 import { useLocation } from "react-router-dom";
 import { QRCodeSVG } from "qrcode.react";
-import certificate from "../../../public/images/ecellcertificate2.png";
+import certificate from "./ecellcertificate2.png";
 
 function WebCert() {
   const componentRef = useRef();

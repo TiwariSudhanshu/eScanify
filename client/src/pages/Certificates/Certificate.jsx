@@ -1,6 +1,6 @@
 import React from "react";
 import { QRCodeSVG } from "qrcode.react";
-import certificate from "../../../public/images/ecellcertificate2.png";
+import certificate from "./ecellcertificate2.png";
 
 function Certificate({ data }) {
   const name = data.name;
