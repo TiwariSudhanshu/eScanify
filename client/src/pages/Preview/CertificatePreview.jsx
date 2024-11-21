@@ -36,79 +36,99 @@ function CertificatePreview() {
     fetchData();
   }, []);
 
-  const generatePDF = (profile) => {
+  const generatePDF = (profile, callback) => {
     const doc = new jsPDF({
-      orientation: "landscape", // Match the certificate's orientation
+      orientation: "landscape",
       unit: "px",
-      format: [800, 600], // Adjust size as per the certificate's resolution
+      format: [800, 600],
     });
-
-    // Background Image (Certificate Template)
+  
     const imgWidth = 800;
     const imgHeight = 600;
     const certificateImage = "./../public/images/ecellcertificate2.png";
-
-    // Adding the certificate background
-    doc.addImage(certificateImage, "PNG", 0, 0, imgWidth, imgHeight);
-
-    // Adding Name
-    doc.setFontSize(24);
-    doc.setFont("helvetica", "bold");
-    doc.text(profile.name || "Participant Name", imgWidth / 2, 260, {
-      align: "center",
-    });
-
-    // Adding Description
-    doc.setFontSize(14);
-    doc.setFont("helvetica", "normal");
-    doc.text(
-      "has actively participated in the event organized by E-Cell RGPV.",
-      imgWidth / 2,
-      320,
-      { align: "center" }
-    );
-    doc.text(
-      "We acknowledge your commitment and enthusiasm in advancing your entrepreneurship skills.",
-      imgWidth / 2,
-      340,
-      { align: "center" }
-    );
-    const id = profile._id;
-    // Adding QR Code
-    const qrCodeLink = `https://escanify-frsq.onrender.com/#/profile/${id}`;
-    const qrCodeX = 50;
-    const qrCodeY = 500;
-    const qrCodeCanvas = document.createElement("canvas");
-    QRCode.toCanvas(qrCodeCanvas, qrCodeLink, { width: qrCodeSize });
-    doc.addImage(qrCodeCanvas.toDataURL("image/png"), "PNG", qrCodeX, qrCodeY);
-
-    // Return the PDF as a Blob
-    return doc.output("blob");
+  
+    // Create an image object
+    const img = new Image();
+    img.src = certificateImage;
+  
+    img.onload = () => {
+      // Adding the certificate background
+      doc.addImage(img, "PNG", 0, 0, imgWidth, imgHeight);
+  
+      // Adding Name
+      doc.setFontSize(24);
+      doc.setFont("helvetica", "bold");
+      doc.text(profile.name || "Participant Name", imgWidth / 2, 260, {
+        align: "center",
+      });
+  
+      // Adding Description
+      doc.setFontSize(14);
+      doc.setFont("helvetica", "normal");
+      doc.text(
+        "has actively participated in the event organized by E-Cell RGPV.",
+        imgWidth / 2,
+        320,
+        { align: "center" }
+      );
+      doc.text(
+        "We acknowledge your commitment and enthusiasm in advancing your entrepreneurship skills.",
+        imgWidth / 2,
+        340,
+        { align: "center" }
+      );
+  
+      // Adding QR Code
+      const id = profile._id;
+      const qrCodeLink = `https://escanify-frsq.onrender.com/#/profile/${id}`;
+      const qrCodeCanvas = document.createElement("canvas");
+      QRCode.toCanvas(qrCodeCanvas, qrCodeLink, { width: 100 }, (error) => {
+        if (!error) {
+          doc.addImage(qrCodeCanvas.toDataURL("image/png"), "PNG", 50, 500);
+          // Return the PDF as a Blob via the callback
+          callback(doc.output("blob"));
+        } else {
+          console.error("Error generating QR code:", error);
+        }
+      });
+    };
+  
+    img.onerror = (err) => {
+      console.error("Error loading certificate image:", err);
+    };
   };
+  
 
   const handleDownload = async () => {
     try {
-      if (profiles.length == 0) {
+      if (profiles.length === 0) {
         toast.error("No profiles to download certificates for");
         return;
       }
-
+  
       const zip = new JSZip();
-
-      profiles.forEach((profile, index) => {
-        const pdfBlob = generatePDF(profile);
-        zip.file(`${profile.name}.pdf`, pdfBlob);
-      });
-
+      const promises = profiles.map(
+        (profile) =>
+          new Promise((resolve) => {
+            generatePDF(profile, (pdfBlob) => {
+              zip.file(`${profile.name}.pdf`, pdfBlob);
+              resolve();
+            });
+          })
+      );
+  
+      await Promise.all(promises);
+  
       const zipBlob = await zip.generateAsync({ type: "blob" });
       saveAs(zipBlob, "Certificates.zip");
-
+  
       toast.success("All certificates downloaded!");
     } catch (error) {
       toast.error("Error downloading certificates");
       console.error("Error in downloading certificates:", error);
     }
   };
+  
 
   if (!profiles) {
     return (
