@@ -45,7 +45,7 @@ function CertificatePreview() {
   
     const imgWidth = 800;
     const imgHeight = 600;
-    const certificateImage = "./ecellcertificate2.png";
+    const certificateImage = "https://i.pinimg.com/736x/90/2b/e7/902be753df937097208d37b5c1bf1ff8.jpg";
   
     // Create an image object
     const img = new Image();
