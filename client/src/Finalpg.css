@@ -1,0 +1,209 @@
+body {
+    font-family: "Raleway", sans-serif;
+    background-color: #e7e7e7;
+  }
+  
+  .wrapper {
+    width: 800px;
+    height: 600px;
+    position: relative;
+    margin: 3% auto;
+    box-shadow: 2px 18px 70px 0px #9d9d9d;
+    overflow: hidden;
+  }
+  
+  .login-text {
+    width: 800px;
+    height: 450px;
+    background: linear-gradient(to left, #6885ca, #1d2677);
+    position: absolute;
+    top: -300px;
+    box-sizing: border-box;
+    padding: 6%;
+    transition: all 0.5s ease-in-out;
+    z-index: 11;
+  }
+  
+   .text {
+    margin-left: 20px;
+    color: #fff;
+    display: none;
+    transition: all 0.5s ease-in-out;
+    transition-delay: 0.3s;
+  }
+  
+  .text.show-hide {
+    display: block;
+  }
+  
+  .text a {
+    font-size: 36px;
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    display: block;
+  }
+  
+  .text hr {
+    width: 10%;
+    float: left;
+    background-color: #000000;
+    font-size: 16px;
+  }
+  
+  .text input {
+    margin-top: 30px;
+    height: 40px;
+    width: 48%;
+    border: none;
+    background-color: #fffdfd;
+    opacity: 0.6;
+    outline: none;
+    color: #050505;
+    padding-left: 10px;
+  }
+  
+ 
+  input[type=file]::file-selector-button {
+    margin-right: 20px;
+    border: none;
+    background: #061e51;
+    padding: 10px 20px;
+    border-radius: 10px;
+    color: #fff;
+    cursor: pointer;
+    transition: background .2s ease-in-out;
+  }
+  .text button {
+    height: 40px;
+    width: 140px;
+    outline: none;
+  }
+  .alignment{
+    display: flex;
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 20px 0 10px 0;
+
+  }
+  
+  .signup-btn {
+    background: transparent;
+    border: 2px solid #fff;
+    border-radius: 2px;
+    color: #fff;
+    cursor: pointer;
+  }
+  
+  .cta {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: #696a86;
+    border: 2px solid #fff;
+    position: absolute;
+    bottom: -30px;
+    left: 370px;
+    color: #fff;
+    outline: none;
+    cursor: pointer;
+    z-index: 11;
+  }
+  
+  .call-text {
+    background-color: #fff;
+    width: 800px;
+    height: 450px;
+    position: absolute;
+    bottom: 0;
+    padding: 10%;
+    box-sizing: border-box;
+    text-align: center;
+  }
+  
+  .call-text h1 {
+    font-size: 42px;
+    /* margin-top: %; */
+    color: #696a86;
+  }
+  
+  .call-text h1 span {
+    color: #333;
+    font-weight: bolder;
+  }
+  
+  .call-text button {
+    height: 40px;
+    width: 180px;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(to left, #6885ca, #1d2677);
+    color: #fff;
+    font-weight: bolder;
+    margin-top: 30px;
+    cursor: pointer;
+    outline: none;
+  }
+  
+  .expand {
+    transform: translateY(300px);
+ }
+
+@media (max-width: 768px){
+    .wrapper{
+        padding:10px;
+    }
+
+    .call-text h1 {
+        font-size: 1.5em;
+      }
+    
+    .cta {
+        font-size: 16px;
+      }
+
+      .text {
+        width: 100%;
+        padding: 0;
+      }
+
+      input {
+        width: 100%;
+        margin: 8px 0;
+        padding: 8px;
+      }
+
+      button {
+        width: 100%;
+        margin-top: 10px;
+      }
+
+      .login-text {
+        text-align: center;
+      }
+    
+      .profile-list {
+        padding: 10px;
+      }
+    
+      .profile-item {
+        margin: 10px 0;
+        text-align: center;
+      }
+    
+      .profile-item button {
+        width: 100%;
+        padding: 12px;
+      }
+    
+      .call-text button {
+        width: 100%;
+      }
+    
+      .Upbtn {
+        width: 100%;
+        padding: 12px;
+      }
+} 

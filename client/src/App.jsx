@@ -6,6 +6,7 @@ import Form from './Form';
 import WebCert from './WebCert';
 import CertificatePreview from "./CertificatePreview";
 import Upload from "./Upload";
+import FinalPg  from "./FinalPg";
 
 function App() {
   return (
@@ -15,7 +16,8 @@ function App() {
         {/* <Route path="/certificate" element={<WebCert />} /> */}
         <Route path="/certificates" element={<CertificatePreview />} />
           <Route path="/profile/:id" element={<CertificateDetails />} />
-          <Route path="/" element={<Upload />} />  {/* Added route for Form */}
+          <Route path="/" element={<FinalPg />} />  {/* Added route for Form */}
+          <Route path="/upload" element={<Upload />} />  {/* Added route for Form */}
         </Routes>
       </>
     </Router>
