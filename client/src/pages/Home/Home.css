@@ -7,6 +7,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
   width: 800px;
   height: 600px;
   position: relative;
@@ -23,18 +24,18 @@ body {
   position: absolute;
   top: -300px;
   box-sizing: border-box;
-  padding: 6%;
+  /* padding: 6%; */
   transition: all 0.5s ease-in-out;
   z-index: 11;
 }
 
 .login-text.expand {
-  width: 100vw; /* Full viewport width */
-  height: 60vh; /* Full viewport height */
+  width: 100%; /* Full viewport width */
+  height: auto; /* Full viewport height */
   top: 0;
   left: 0;
   transform: none; /* Reset transform */
-  padding: 5%; /* Adjust padding for full-page form */
+  /* padding: 5%; Adjust padding for full-page form */
   border-radius: 0; /* Remove rounded corners */
   z-index: 20; /* Ensure it's above other elements */
 }
@@ -67,7 +68,7 @@ body {
 }
 
 .text input {
-  margin-top: 30px;
+  /* margin-top: 30px; */
   height: 40px;
   width: 48%;
   border: none;
@@ -99,26 +100,30 @@ input[type="file"]::file-selector-button {
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  gap: 6rem;
-  justify-content: space-between;
-  margin: 20px 0 10px 0;
+  gap: 2.2rem;
+  /* justify-content: space-between; */
+  margin: 20px 10px 10px 0;
   height: auto;
   text-align: center;
+  padding-bottom: 1rem;
+  /* margin-bottom: 1rem; */
 }
 
 .alignment input{
   width: 70%;
   border: 1px solid #ccc;
   border-radius: 6px;
-  padding: 10px;
-  margin: 1rem;
+  /* padding: 10px; */
+  /* margin: 2px; */
   box-sizing: border-box;
 }
 
 .signup-btn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  display: flex; /* Use flexbox to align items */
+  justify-content: center; /* Horizontally center the content */
+  align-items: center; /* Vertically center the content */
+  margin: auto; /* Auto margins for centering */
+  width: 70%; /* Button width */
   
   background: transparent;
   border: 2px solid #fff;
@@ -126,6 +131,8 @@ input[type="file"]::file-selector-button {
   color: #fff;
   cursor: pointer;
   text-align: center;
+  padding: 10px 0; /* Adjust padding for better button appearance */
+  margin-bottom: 2.2rem; /* Add space below the button */
 }
 
 .cta {
