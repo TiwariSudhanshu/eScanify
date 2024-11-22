@@ -157,7 +157,7 @@ function Home() {
       </div>
       <div className="call-text">
         <h1>
-          Upload <span>and</span> generate
+          Upload <span>and</span> Generate
         </h1>
         <input
           type="file"

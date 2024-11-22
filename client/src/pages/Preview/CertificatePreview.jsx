@@ -152,9 +152,9 @@ function CertificatePreview() {
     <button
     onClick={handleDownload}
     disabled={loader}
-    className={`mt-[8vmax] w-auto mx-[43%] ${
-      loader ? "bg-gray-400" : "bg-gray-300 hover:bg-gray-400"
-    } text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center`}
+    className={`mt-[8vmax] w-auto flex justify-center items-center my-auto mx-auto ${
+  loader ? "bg-blue-300 cursor-not-allowed" : "bg-blue-800 hover:bg-blue-600"
+} font-bold text-white py-2 px-4 rounded transition-all duration-300 ease-in-out`}
   >
     {loader ? (
       <>
