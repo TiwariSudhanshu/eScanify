@@ -297,7 +297,7 @@ input[type="file"]::file-selector-button {
     cursor: pointer;
     transition: transorm 0.3s ease;
     font-size: 10px;
-    left: 360px;
+    left: 180px;
     margin-bottom: 8px;
 
     i{
