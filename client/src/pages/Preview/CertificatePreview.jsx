@@ -10,6 +10,7 @@ import QRCode from "qrcode";
 function CertificatePreview() {
   const [profiles, setProfiles] = useState([]);
   const [loader, setLoader] = useState(false)
+  const [loader2, setLoader2] = useState(false)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -136,6 +137,31 @@ function CertificatePreview() {
       setLoader(false)
     }
   };
+
+  // Send mail api
+
+  const sendMail = async(e)=>{
+    e.preventDefault();
+    setLoader2(true)
+   try {
+     const response = await fetch('http://localhost:8080/api/v1/profile/sendMail',{
+       method: 'get'
+     })
+ 
+     if(response.ok){
+       toast.success("Mail sent")
+       setLoader2(false)
+       return;
+     } else{
+       toast.error("Error in sending mail")
+     }
+   } catch (error) {
+    console.log("Error :", error);
+    toast.error("Error")
+   } 
+    
+   
+  }
   
   
 
@@ -189,6 +215,49 @@ function CertificatePreview() {
           <path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z" />
         </svg>
         <span>Download All</span>
+      </>
+    )}
+  </button>
+  <button
+    onClick={sendMail}
+    disabled={loader2}
+    className={`mt-[8vmax] w-auto flex justify-center items-center my-auto mx-auto ${
+  loader ? "bg-blue-300 cursor-not-allowed" : "bg-blue-800 hover:bg-blue-600"
+} font-bold text-white py-2 px-4 rounded transition-all duration-300 ease-in-out`}
+  >
+    {loader2 ? (
+      <>
+        <svg
+          className="animate-spin w-4 h-4 mr-2"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+        >
+          <circle
+            className="opacity-25"
+            cx="12"
+            cy="12"
+            r="10"
+            stroke="currentColor"
+            strokeWidth="4"
+          ></circle>
+          <path
+            className="opacity-75"
+            fill="currentColor"
+            d="M4 12a8 8 0 018-8v8H4z"
+          ></path>
+        </svg>
+        Loading...
+      </>
+    ) : (
+      <>
+        <svg
+          className="fill-current w-4 h-4 mr-2"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 20 20"
+        >
+          <path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z" />
+        </svg>
+        <span>Send Mail to all</span>
       </>
     )}
   </button>
