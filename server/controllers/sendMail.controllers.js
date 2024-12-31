@@ -2,6 +2,12 @@ import { Profile } from "../models/profile.models.js"
 import {ApiError} from "../utils/ApiError.js"
 import {ApiResponse} from "../utils/ApiResponse.js"
 import nodemailer from 'nodemailer'
+import path from "path";
+import { fileURLToPath } from "url";
+
+// Recreate __dirname
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 export const sendMail = async(req, res)=>{
     
@@ -13,13 +19,7 @@ export const sendMail = async(req, res)=>{
         throw new ApiError(400, "Profiles not fetched")
     }
     
-    // const recipents = [
-    //     { 
-    //         name: "Sudhanshu",
-    //         email:"sudhanshutiwari37111@gmail.com",
-    //     }
-    // ]
-    // Send Mail
+
 
     try {
         const transporter = nodemailer.createTransport({
@@ -49,7 +49,13 @@ export const sendMail = async(req, res)=>{
                 
                 Best regards,
                 Sudhanshu Tiwari
-                E-Cell, RGPV`
+                E-Cell, RGPV`,
+                attachments: [
+                    {
+                      filename: `${profile.name}.pdf`, 
+                      path: path.join(__dirname, "../downloads", `${profile.name}.pdf`),
+                    },
+                  ],
             }
             console.log(`Sending email to ${profile.email}...`);
             await transporter.sendMail(mailOptions);

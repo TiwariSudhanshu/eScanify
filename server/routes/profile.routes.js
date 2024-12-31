@@ -10,6 +10,6 @@ router.route("/save").post(saveData)
 router.route("/fetch").post(fetchData)
 router.route("/saveExcel").post(upload.single('file'), SaveFile);
 router.route("/fetchAll").get( fetchAll);
-router.route("/sendMail").get(sendMail);
+router.route("/sendMail").post(sendMail);
 
 export default router;

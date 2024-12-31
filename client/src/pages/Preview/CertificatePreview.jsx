@@ -6,6 +6,7 @@ import JSZip from "jszip";
 import { saveAs } from "file-saver";
 import certificate from "./ecellcertificate2.png"
 // import { QRCodeSVG } from 'qrcode.react';
+
 import QRCode from "qrcode";
 function CertificatePreview() {
   const [profiles, setProfiles] = useState([]);
@@ -145,7 +146,7 @@ function CertificatePreview() {
     setLoader2(true)
    try {
      const response = await fetch('http://localhost:8080/api/v1/profile/sendMail',{
-       method: 'get'
+       method: 'post'
      })
  
      if(response.ok){
@@ -159,7 +160,9 @@ function CertificatePreview() {
     console.log("Error :", error);
     toast.error("Error")
    } 
-    
+    finally{
+      setLoader2(false)
+    }
    
   }
   
@@ -246,7 +249,7 @@ function CertificatePreview() {
             d="M4 12a8 8 0 018-8v8H4z"
           ></path>
         </svg>
-        Loading...
+        Sending...
       </>
     ) : (
       <>
