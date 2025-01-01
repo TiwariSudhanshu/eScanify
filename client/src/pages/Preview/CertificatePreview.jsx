@@ -12,6 +12,26 @@ function CertificatePreview() {
   const [loader, setLoader] = useState(false)
   const [loader2, setLoader2] = useState(false)
 
+  const handleClearing = async () => {
+    setLoader(true); 
+    try {
+      const response = await fetch("http://localhost:8080/api/v1/profile/clearAll", {
+        method: "POST", 
+      });
+  
+      if (response.ok) {
+        toast.success("Cleared successfully");
+      } else {
+        toast.error("Error Something went wrong");
+      }
+    } catch (error) {
+      toast.error("Error in clearing");
+      console.log("Error in clearing:", error);
+    } finally {
+      setLoader(false); 
+    }
+  };
+  
   useEffect(() => {
     const fetchData = async () => {
       setLoader(true);
@@ -92,17 +112,35 @@ function CertificatePreview() {
       // Add QR code to the certificate
       doc.addImage(qrCodeDataUrl, "PNG", 50, 500);
   
-      // Return the PDF as a Blob
-      return doc.output("blob");
+      // Convert PDF to Blob
+      const pdfBlob = doc.output("blob");
+  
+      // Prepare FormData to send the PDF and profile id to the backend
+      const formData = new FormData();
+      formData.append("profileId", id);
+      formData.append("file", pdfBlob, "certificate.pdf");
+      // Send the request to the backend
+     try {
+       const response = await fetch("http://localhost:8080/api/v1/profile/saveCertificate", {
+         method: "POST",
+         body: formData,
+       });
+   
+       if (response.ok) {
+         toast.success("Certificate saved successfully!");
+       } else {
+         toast.error("Error saving certificate.");
+       }
+     } catch (error) {
+      console.log("Error :", error)
+     }
+      
+      return pdfBlob; // Return the PDF Blob if needed
     } catch (error) {
       console.error("Error generating PDF for profile:", profile, error);
       throw error;
     }
   };
-  
-  
-  
-  
 
   const handleDownload = async () => {
     
@@ -147,8 +185,9 @@ function CertificatePreview() {
      const response = await fetch('http://localhost:8080/api/v1/profile/sendMail',{
        method: 'get'
      })
- 
      if(response.ok){
+      const data = await response.json()
+      console.log(data)
        toast.success("Mail sent")
        setLoader2(false)
        return;
@@ -214,9 +253,16 @@ function CertificatePreview() {
         >
           <path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z" />
         </svg>
-        <span>Download All</span>
+        <span>Save and Download All</span>
       </>
     )}
+  </button>
+  <button onClick={handleClearing}
+    className={`mt-[8vmax] w-auto flex justify-center items-center my-auto mx-auto ${
+  loader ? "bg-blue-300 cursor-not-allowed" : "bg-blue-800 hover:bg-blue-600"
+} font-bold text-white py-2 px-4 rounded transition-all duration-300 ease-in-out`}
+>
+  Clear All
   </button>
   <button
     onClick={sendMail}

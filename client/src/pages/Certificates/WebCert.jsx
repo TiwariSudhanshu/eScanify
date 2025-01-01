@@ -32,7 +32,28 @@ function WebCert() {
       const imgHeight = (canvas.height * imgWidth) / canvas.width;
 
       pdf.addImage(imgData, "PNG", 0, 0, imgWidth, imgHeight);
-      pdf.save("certificate.pdf");
+
+      // Save the PDF file
+      const pdfBlob = pdf.output("blob");
+      const pdfFile = new File([pdfBlob], "certificate.pdf", { type: "application/pdf" });
+
+      // Send the PDF file and id to the backend using FormData
+      const formData = new FormData();
+      formData.append("profileId", id);
+      formData.append("file", pdfFile);
+      
+
+      const response = await fetch("http://localhost:8080/api/v1/profile/saveCertificate", {
+        method: "POST",
+        body: formData,
+      });
+
+      if (response.ok) {
+        alert("Certificate saved successfully!");
+      } else {
+        alert("Error saving certificate.");
+      }
+      
     } catch (error) {
       console.error("Error generating PDF:", error);
     }
@@ -50,10 +71,10 @@ function WebCert() {
       <div className="flex justify-center">
         <button
           onClick={generatePDF}
-          class="  mt-[8vmax] w-auto mx-[43%] bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center"
+          className="mt-[8vmax] w-auto mx-[43%] bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center"
         >
           <svg
-            class="fill-current  w-4 h-4 mr-2"
+            className="fill-current w-4 h-4 mr-2"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 20 20"
           >
@@ -62,7 +83,7 @@ function WebCert() {
           <span>Download</span>
         </button>
       </div>
-      {/*certificate*/}
+      {/* Certificate */}
       <div className="flex flex-col items-center justify-center bg-gradient-to-br pt-20 pb-12">
         <div
           ref={componentRef}
@@ -75,7 +96,7 @@ function WebCert() {
           />
 
           <p
-            className="name absolute font-bold text-3xl "
+            className="name absolute font-bold text-3xl"
             style={{
               top: "40%",
               left: "50%",
@@ -86,7 +107,7 @@ function WebCert() {
           </p>
 
           <p
-            className="description absolute  px-2 text-center"
+            className="description absolute px-2 text-center"
             style={{
               top: "50%",
               left: "50%",
@@ -108,15 +129,15 @@ function WebCert() {
           >
             <QRCodeSVG
               value={link}
-              className=" qr w-16 h-16 sm:w-12 sm:h-12 md:w-16 md:h-16 lg:w-20 lg:h-20"
+              className="qr w-16 h-16 sm:w-12 sm:h-12 md:w-16 md:h-16 lg:w-20 lg:h-20"
             />
           </div>
         </div>
         <style jsx>{`
             @media (max-width: 470px) {
-              .description{
+              .description {
                 top: 55%;
-                font-size:6px;
+                font-size: 6px;
                 width: 80%;
               }
 
@@ -126,10 +147,10 @@ function WebCert() {
                 bottom: 8%;
               }
 
-              .name{
-              top:3.4rem !important;
-              font-size: 14px; !important;
-              font-weight: bold;
+              .name {
+                top: 3.4rem !important;
+                font-size: 14px !important;
+                font-weight: bold;
               }
             }
           `}</style>

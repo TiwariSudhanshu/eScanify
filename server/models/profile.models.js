@@ -20,6 +20,10 @@ const profileSchema = new mongoose.Schema({
         type: Date,
         index: true
     },
+    certificate:{
+        type: mongoose.Types.ObjectId,
+        ref: 'File'
+    }
 },{timestamps:true})
 
 export const Profile = mongoose.model("Profile", profileSchema);
