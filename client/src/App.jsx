@@ -3,7 +3,7 @@ import React from "react";
 import { HashRouter as Router, Routes, Route } from "react-router-dom";
 
 import CertificateDetails from "./pages/Details/CertificateDetails.jsx";
-import WebCert from "./pages//Certificates/WebCert.jsx";
+import WebCert from "./pages/Certificates/WebCert.jsx";
 import CertificatePreview from "./pages/Preview/CertificatePreview.jsx";
 import Home from "./pages/Home/Home.jsx";
 

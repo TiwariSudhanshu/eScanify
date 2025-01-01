@@ -43,7 +43,7 @@ function WebCert() {
       formData.append("file", pdfFile);
       
 
-      const response = await fetch("http://localhost:8080/api/v1/profile/saveCertificate", {
+      const response = await fetch("https://escanify.onrender.com/api/v1/profile/saveCertificate", {
         method: "POST",
         body: formData,
       });

@@ -144,7 +144,7 @@ function Home() {
             />
             <input
               type="date"
-              name="eventData"
+              name="eventDate"
               value={formData.eventDate}
               onChange={handleInputChange}
               placeholder="Event date"

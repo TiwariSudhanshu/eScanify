@@ -6,6 +6,7 @@ import JSZip from "jszip";
 import { saveAs } from "file-saver";
 import certificate from "./ecellcertificate2.png"
 // import { QRCodeSVG } from 'qrcode.react';
+
 import QRCode from "qrcode";
 function CertificatePreview() {
   const [profiles, setProfiles] = useState([]);
@@ -15,7 +16,7 @@ function CertificatePreview() {
   const handleClearing = async () => {
     setLoader(true); 
     try {
-      const response = await fetch("http://localhost:8080/api/v1/profile/clearAll", {
+      const response = await fetch("https://escanify.onrender.com/api/v1/profile/clearAll", {
         method: "POST", 
       });
   
@@ -65,10 +66,10 @@ function CertificatePreview() {
         unit: "px",
         format: [800, 600],
       });
-  
+
       const imgWidth = 800;
       const imgHeight = 600;
-  
+
       // Load the certificate background image
       const loadImage = (src) =>
         new Promise((resolve, reject) => {
@@ -77,17 +78,17 @@ function CertificatePreview() {
           img.onload = () => resolve(img);
           img.onerror = (err) => reject(`Failed to load image: ${src}`);
         });
-  
+
       const img = await loadImage(certificate); // Pass the imported certificate path
       doc.addImage(img, "PNG", 0, 0, imgWidth, imgHeight); // Add image to PDF
-  
+
       // Add participant's name
       doc.setFontSize(24);
       doc.setFont("helvetica", "bold");
       doc.text(profile.name || "Participant Name", imgWidth / 2, 260, {
         align: "center",
       });
-  
+
       // Add description
       doc.setFontSize(14);
       doc.setFont("helvetica", "normal");
@@ -103,12 +104,12 @@ function CertificatePreview() {
         340,
         { align: "center" }
       );
-  
+
       // Generate QR code
       const id = profile._id;
       const qrCodeLink = `https://escanify-frsq.onrender.com/#/profile/${id}`;
       const qrCodeDataUrl = await QRCode.toDataURL(qrCodeLink, { width: 100 });
-  
+
       // Add QR code to the certificate
       doc.addImage(qrCodeDataUrl, "PNG", 50, 500);
   
@@ -121,7 +122,7 @@ function CertificatePreview() {
       formData.append("file", pdfBlob, "certificate.pdf");
       // Send the request to the backend
      try {
-       const response = await fetch("http://localhost:8080/api/v1/profile/saveCertificate", {
+       const response = await fetch("https://escanify.onrender.com/api/v1/profile/saveCertificate", {
          method: "POST",
          body: formData,
        });
@@ -143,14 +144,14 @@ function CertificatePreview() {
   };
 
   const handleDownload = async () => {
-    
+
     try {
       if (profiles.length === 0) {
         toast.error("No profiles to download certificates for");
         return;
       }
-        setLoader(true)
-  
+      setLoader(true)
+
       const zip = new JSZip();
       const promises = profiles.map(async (profile) => {
         try {
@@ -161,12 +162,12 @@ function CertificatePreview() {
           toast.error(`Failed to generate certificate for ${profile.name}`);
         }
       });
-  
+
       await Promise.all(promises); // Ensure all profiles are processed
-  
+
       const zipBlob = await zip.generateAsync({ type: "blob" });
       saveAs(zipBlob, "Certificates.zip");
-  
+
       toast.success("All certificates downloaded!");
     } catch (error) {
       toast.error("Error downloading certificates");
@@ -178,11 +179,11 @@ function CertificatePreview() {
 
   // Send mail api
 
-  const sendMail = async(e)=>{
+  const sendMail = async (e) => {
     e.preventDefault();
     setLoader2(true)
    try {
-     const response = await fetch('http://localhost:8080/api/v1/profile/sendMail',{
+     const response = await fetch('https://escanify.onrender.com/api/v1/profile/sendMail',{
        method: 'get'
      })
      if(response.ok){
@@ -201,8 +202,8 @@ function CertificatePreview() {
     
    
   }
-  
-  
+
+
 
   if (!profiles) {
     return (
@@ -211,7 +212,7 @@ function CertificatePreview() {
       </div>
     );
   }
-
+  
   return (
     <>
     <button
@@ -312,6 +313,8 @@ function CertificatePreview() {
       ))}
     </>
   );
+  
+  
 }
 
 export default CertificatePreview;
