@@ -22,6 +22,7 @@ function CertificatePreview() {
   
       if (response.ok) {
         toast.success("Cleared successfully");
+        setProfiles([]);
       } else {
         toast.error("Error Something went wrong");
       }
