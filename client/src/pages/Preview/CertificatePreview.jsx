@@ -46,10 +46,10 @@ function CertificatePreview() {
         unit: "px",
         format: [800, 600],
       });
-  
+
       const imgWidth = 800;
       const imgHeight = 600;
-  
+
       // Load the certificate background image
       const loadImage = (src) =>
         new Promise((resolve, reject) => {
@@ -58,17 +58,17 @@ function CertificatePreview() {
           img.onload = () => resolve(img);
           img.onerror = (err) => reject(`Failed to load image: ${src}`);
         });
-  
+
       const img = await loadImage(certificate); // Pass the imported certificate path
       doc.addImage(img, "PNG", 0, 0, imgWidth, imgHeight); // Add image to PDF
-  
+
       // Add participant's name
       doc.setFontSize(24);
       doc.setFont("helvetica", "bold");
       doc.text(profile.name || "Participant Name", imgWidth / 2, 260, {
         align: "center",
       });
-  
+
       // Add description
       doc.setFontSize(14);
       doc.setFont("helvetica", "normal");
@@ -84,15 +84,15 @@ function CertificatePreview() {
         340,
         { align: "center" }
       );
-  
+
       // Generate QR code
       const id = profile._id;
       const qrCodeLink = `https://escanify-frsq.onrender.com/#/profile/${id}`;
       const qrCodeDataUrl = await QRCode.toDataURL(qrCodeLink, { width: 100 });
-  
+
       // Add QR code to the certificate
       doc.addImage(qrCodeDataUrl, "PNG", 50, 500);
-  
+
       // Return the PDF as a Blob
       return doc.output("blob");
     } catch (error) {
@@ -100,20 +100,20 @@ function CertificatePreview() {
       throw error;
     }
   };
-  
-  
-  
-  
+
+
+
+
 
   const handleDownload = async () => {
-    
+
     try {
       if (profiles.length === 0) {
         toast.error("No profiles to download certificates for");
         return;
       }
-        setLoader(true)
-  
+      setLoader(true)
+
       const zip = new JSZip();
       const promises = profiles.map(async (profile) => {
         try {
@@ -124,12 +124,12 @@ function CertificatePreview() {
           toast.error(`Failed to generate certificate for ${profile.name}`);
         }
       });
-  
+
       await Promise.all(promises); // Ensure all profiles are processed
-  
+
       const zipBlob = await zip.generateAsync({ type: "blob" });
       saveAs(zipBlob, "Certificates.zip");
-  
+
       toast.success("All certificates downloaded!");
     } catch (error) {
       toast.error("Error downloading certificates");
@@ -141,32 +141,32 @@ function CertificatePreview() {
 
   // Send mail api
 
-  const sendMail = async(e)=>{
+  const sendMail = async (e) => {
     e.preventDefault();
     setLoader2(true)
-   try {
-     const response = await fetch('http://localhost:8080/api/v1/profile/sendMail',{
-       method: 'post'
-     })
- 
-     if(response.ok){
-       toast.success("Mail sent")
-       setLoader2(false)
-       return;
-     } else{
-       toast.error("Error in sending mail")
-     }
-   } catch (error) {
-    console.log("Error :", error);
-    toast.error("Error")
-   } 
-    finally{
+    try {
+      const response = await fetch('http://localhost:8080/api/v1/profile/sendMail', {
+        method: 'post'
+      })
+
+      if (response.ok) {
+        toast.success("Mail sent")
+        setLoader2(false)
+        return;
+      } else {
+        toast.error("Error in sending mail")
+      }
+    } catch (error) {
+      console.log("Error :", error);
+      toast.error("Error")
+    }
+    finally {
       setLoader2(false)
     }
-   
+
   }
-  
-  
+
+
 
   if (!profiles) {
     return (
@@ -175,100 +175,111 @@ function CertificatePreview() {
       </div>
     );
   }
-
+  
   return (
-    <>
-    <button
-    onClick={handleDownload}
-    disabled={loader}
-    className={`mt-[8vmax] w-auto flex justify-center items-center my-auto mx-auto ${
-  loader ? "bg-blue-300 cursor-not-allowed" : "bg-blue-800 hover:bg-blue-600"
-} font-bold text-white py-2 px-4 rounded transition-all duration-300 ease-in-out`}
-  >
-    {loader ? (
-      <>
-        <svg
-          className="animate-spin w-4 h-4 mr-2"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
+    <div className="bg-gradient-to-br from-gray-100 to-gray-300 min-h-screen flex flex-col items-center py-12 px-4">
+      <div className="space-y-6">
+        <button
+          onClick={handleDownload}
+          disabled={loader}
+          className={`w-auto flex justify-center items-center mx-auto border-2 ${
+            loader ? "bg-blue-300 cursor-not-allowed border-blue-400" : "bg-blue-600 hover:bg-blue-800 border-blue-700"
+          } font-semibold text-white py-3 px-6 rounded-lg shadow-md transition-all duration-300`}
         >
-          <circle
-            className="opacity-25"
-            cx="12"
-            cy="12"
-            r="10"
-            stroke="currentColor"
-            strokeWidth="4"
-          ></circle>
-          <path
-            className="opacity-75"
-            fill="currentColor"
-            d="M4 12a8 8 0 018-8v8H4z"
-          ></path>
-        </svg>
-        Loading...
-      </>
-    ) : (
-      <>
-        <svg
-          className="fill-current w-4 h-4 mr-2"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 20 20"
+          {loader ? (
+            <>
+              <svg
+                className="animate-spin w-5 h-5 mr-2"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+              >
+                <circle
+                  className="opacity-25"
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  stroke="currentColor"
+                  strokeWidth="4"
+                ></circle>
+                <path
+                  className="opacity-75"
+                  fill="currentColor"
+                  d="M4 12a8 8 0 018-8v8H4z"
+                ></path>
+              </svg>
+              Loading...
+            </>
+          ) : (
+            <>
+              <svg
+                className="fill-current w-5 h-5 mr-2"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+              >
+                <path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z" />
+              </svg>
+              <span>Download All</span>
+            </>
+          )}
+        </button>
+        <button
+          onClick={sendMail}
+          disabled={loader2}
+          className={`w-auto flex justify-center items-center mx-auto border-2 ${
+            loader2 ? "bg-blue-300 cursor-not-allowed border-blue-400" : "bg-blue-600 hover:bg-blue-800 border-blue-700"
+          } font-semibold text-white py-3 px-6 rounded-lg shadow-md transition-all duration-300`}
         >
-          <path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z" />
-        </svg>
-        <span>Download All</span>
-      </>
-    )}
-  </button>
-  <button
-    onClick={sendMail}
-    disabled={loader2}
-    className={`mt-[8vmax] w-auto flex justify-center items-center my-auto mx-auto ${
-  loader ? "bg-blue-300 cursor-not-allowed" : "bg-blue-800 hover:bg-blue-600"
-} font-bold text-white py-2 px-4 rounded transition-all duration-300 ease-in-out`}
-  >
-    {loader2 ? (
-      <>
-        <svg
-          className="animate-spin w-4 h-4 mr-2"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-        >
-          <circle
-            className="opacity-25"
-            cx="12"
-            cy="12"
-            r="10"
-            stroke="currentColor"
-            strokeWidth="4"
-          ></circle>
-          <path
-            className="opacity-75"
-            fill="currentColor"
-            d="M4 12a8 8 0 018-8v8H4z"
-          ></path>
-        </svg>
-        Sending...
-      </>
-    ) : (
-      <>
-        <svg
-          className="fill-current w-4 h-4 mr-2"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 20 20"
-        >
-          <path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z" />
-        </svg>
-        <span>Send Mail to all</span>
-      </>
-    )}
-  </button>
-      {profiles.map((profile, index) => (
-        <Certificate key={index} data={profile} />
-      ))}
-    </>
+          {loader2 ? (
+            <>
+              <svg
+                className="animate-spin w-5 h-5 mr-2"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+              >
+                <circle
+                  className="opacity-25"
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  stroke="currentColor"
+                  strokeWidth="4"
+                ></circle>
+                <path
+                  className="opacity-75"
+                  fill="currentColor"
+                  d="M4 12a8 8 0 018-8v8H4z"
+                ></path>
+              </svg>
+              Sending...
+            </>
+          ) : (
+            <>
+              <svg
+                className="fill-current w-5 h-5 mr-2"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+              >
+                <path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z" />
+              </svg>
+              <span>Send Mail to all</span>
+            </>
+          )}
+        </button>
+      </div>
+      <div className="mt-12 space-y-6 w-full max-w-4xl">
+        {profiles.map((profile, index) => (
+          <div
+            key={index}
+            className="flex justify-center border-2 border-gray-400 rounded-lg p-4 shadow-lg bg-white"
+          >
+            <Certificate data={profile} />
+          </div>
+        ))}
+      </div>
+    </div>
   );
+  
+  
 }
 
 export default CertificatePreview;
