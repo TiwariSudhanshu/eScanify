@@ -216,10 +216,11 @@ function CertificatePreview() {
   
   return (
     <>
+      <div className="flex flex-row justify-center items-center space-x-4 mt-[8vmax]">
     <button
     onClick={handleDownload}
     disabled={loader}
-    className={`mt-[8vmax] w-auto flex justify-center items-center my-auto mx-auto ${
+    className={` w-auto flex justify-center items-center my-auto  ${
   loader ? "bg-blue-300 cursor-not-allowed" : "bg-blue-800 hover:bg-blue-600"
 } font-bold text-white py-2 px-4 rounded transition-all duration-300 ease-in-out`}
   >
@@ -260,7 +261,7 @@ function CertificatePreview() {
     )}
   </button>
   <button onClick={handleClearing}
-    className={`mt-[8vmax] w-auto flex justify-center items-center my-auto mx-auto ${
+    className={` w-auto flex justify-center items-center my-auto  ${
   loader ? "bg-blue-300 cursor-not-allowed" : "bg-blue-800 hover:bg-blue-600"
 } font-bold text-white py-2 px-4 rounded transition-all duration-300 ease-in-out`}
 >
@@ -269,7 +270,7 @@ function CertificatePreview() {
   <button
     onClick={sendMail}
     disabled={loader2}
-    className={`mt-[8vmax] w-auto flex justify-center items-center my-auto mx-auto ${
+    className={` w-auto flex justify-center items-center my-auto ${
   loader ? "bg-blue-300 cursor-not-allowed" : "bg-blue-800 hover:bg-blue-600"
 } font-bold text-white py-2 px-4 rounded transition-all duration-300 ease-in-out`}
   >
@@ -309,6 +310,7 @@ function CertificatePreview() {
       </>
     )}
   </button>
+        </div>
       {profiles.map((profile, index) => (
         <Certificate key={index} data={profile} />
       ))}
