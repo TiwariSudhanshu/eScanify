@@ -129,7 +129,7 @@ function CertificatePreview() {
        });
    
        if (response.ok) {
-         toast.success("Certificate saved successfully!");
+        //  toast.success("Certificate saved successfully!");
        } else {
          toast.error("Error saving certificate.");
        }

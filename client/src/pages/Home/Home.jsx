@@ -77,12 +77,13 @@ function Home() {
 
   const handleFileSubmit = async (e) => {
     e.preventDefault();
-
+  
     if (!file) {
       toast.error("Please select a file!");
       return;
     }
-
+  
+    setLoader(true);
     const formData = new FormData();
     formData.append("file", file);
     try {
@@ -102,6 +103,8 @@ function Home() {
     } catch (error) {
       toast.error("Error");
       console.log("Error", error);
+    } finally {
+      setLoader(false); 
     }
   };
   return (
@@ -156,20 +159,40 @@ function Home() {
         </div>
       </div>
       <div className="call-text">
-        <h1>
-          Upload <span>and</span> Generate
-        </h1>
-        <input
-          type="file"
-          accept=".xlsx, .xls"
-          id="file-input"
-          className="Upbtn"
-          onChange={handleFileChange}
-        />
-        <label htmlFor="file-input" className="upload-btn">
-          <button onClick={handleFileSubmit}>UPLOAD</button>
-        </label>
-      </div>
+  <h1>
+    Upload <span>and</span> Generate
+  </h1>
+  <input
+    type="file"
+    accept=".xlsx, .xls"
+    id="file-input"
+    className="Upbtn"
+    onChange={handleFileChange}
+  />
+  <label htmlFor="file-input" className="upload-btn">
+    <button className="flex justify-center items-center" onClick={handleFileSubmit} disabled={loader}>
+      {loader ? <svg
+          className="animate-spin w-4 h-4 mr-2"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+        >
+          <circle
+            className="opacity-25"
+            cx="12"
+            cy="12"
+            r="10"
+            stroke="currentColor"
+            strokeWidth="4"
+          ></circle>
+          <path
+            className="opacity-75"
+            fill="currentColor"
+            d="M4 12a8 8 0 018-8v8H4z"
+          ></path>
+        </svg> : "UPLOAD"}
+    </button>
+  </label>
+</div>
     </div>
   );
 }
